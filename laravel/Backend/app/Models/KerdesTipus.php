@@ -10,11 +10,11 @@ class KerdesTipus extends Model
 
     protected $fillable = [
         'megnevezes',
-        'kerdes_id',
     ];
 
-    public function kerdes()
+    public function kerdesek()
     {
-        return $this->belongsTo(Kerdes::class);
+        return $this->hasMany(Kerdes::class, 'tipus_id');
     }
 }
+

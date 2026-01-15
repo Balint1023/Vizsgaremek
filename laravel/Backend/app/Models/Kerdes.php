@@ -10,11 +10,12 @@ class Kerdes extends Model
 
     protected $fillable = [
         'leiras',
+        'tipus_id',
     ];
 
-    public function tipusok()
+    public function tipus()
     {
-        return $this->hasMany(KerdesTipus::class, 'kerdes_id');
+        return $this->belongsTo(KerdesTipus::class, 'tipus_id');
     }
 
     public function valaszok()

@@ -29,23 +29,23 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // KÉRDÉSEK
-        Schema::create('kerdesek', function (Blueprint $table) {
-            $table->id();
-            $table->text('leiras');
-            $table->timestamps();
-        });
-
         // KÉRDÉS TÍPUSOK
         Schema::create('kerdes_tipusok', function (Blueprint $table) {
             $table->id();
             $table->string('megnevezes');
-            $table->unsignedBigInteger('kerdes_id');
+            $table->timestamps();
+        });
+
+        // KÉRDÉSEK
+        Schema::create('kerdesek', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('tipus_id');
+            $table->text('leiras');
             $table->timestamps();
 
-            $table->foreign('kerdes_id')
+            $table->foreign('tipus_id')
                 ->references('id')
-                ->on('kerdesek')
+                ->on('kerdes_tipusok')
                 ->onDelete('cascade');
         });
 
@@ -86,7 +86,7 @@ return new class extends Migration
                 ->onDelete('cascade');
         });
 
-        // DIÁK–CSOPORT
+        // DIÁK–CSOPORT (pivot)
         Schema::create('diak_csoport', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('diak_id');
@@ -104,7 +104,7 @@ return new class extends Migration
                 ->onDelete('cascade');
         });
 
-        // TANÁR–CSOPORT
+        // TANÁR–CSOPORT (pivot)
         Schema::create('tanar_csoport', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('tanar_id');
@@ -129,10 +129,11 @@ return new class extends Migration
         Schema::dropIfExists('diak_csoport');
         Schema::dropIfExists('ertekeles');
         Schema::dropIfExists('valaszok');
-        Schema::dropIfExists('kerdes_tipusok');
         Schema::dropIfExists('kerdesek');
+        Schema::dropIfExists('kerdes_tipusok');
         Schema::dropIfExists('csoport');
         Schema::dropIfExists('diak');
         Schema::dropIfExists('tanar');
     }
 };
+
