@@ -54,7 +54,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('kerdes_id');
             $table->unsignedBigInteger('tanar_id');
-            $table->text('ertek');
+            $table->unsignedTinyInteger('ertek');
             $table->timestamps();
 
             $table->foreign('kerdes_id')
@@ -71,6 +71,7 @@ return new class extends Migration
         // ÉRTÉKELÉS
         Schema::create('ertekeles', function (Blueprint $table) {
             $table->id();
+            $table->unique(['diak_id', 'tanar_id']);
             $table->unsignedBigInteger('tanar_id');
             $table->unsignedBigInteger('diak_id');
             $table->timestamps();
@@ -89,6 +90,7 @@ return new class extends Migration
         // DIÁK–CSOPORT (pivot)
         Schema::create('diak_csoport', function (Blueprint $table) {
             $table->id();
+            $table->unique(['diak_id', 'csoport_id']);
             $table->unsignedBigInteger('diak_id');
             $table->unsignedBigInteger('csoport_id');
             $table->timestamps();
@@ -107,6 +109,7 @@ return new class extends Migration
         // TANÁR–CSOPORT (pivot)
         Schema::create('tanar_csoport', function (Blueprint $table) {
             $table->id();
+            $table->unique(['tanar_id', 'csoport_id']);
             $table->unsignedBigInteger('tanar_id');
             $table->unsignedBigInteger('csoport_id');
             $table->timestamps();
@@ -136,4 +139,3 @@ return new class extends Migration
         Schema::dropIfExists('tanar');
     }
 };
-
