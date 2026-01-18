@@ -24,13 +24,12 @@ class DiakController extends Controller
             ], 404);
         }
 
-        // Session alapú beléptetés
-        session([
-            'diak_id' => $diak->id
-        ]);
+        $diak->tokens()->delete();
+
+        $token = $diak->createToken('diak-token')->plainTextToken;
 
         return response()->json([
-            'message' => 'Sikeres belépés',
+            'token' => $token,
             'diak' => [
                 'id' => $diak->id,
                 'nev' => $diak->nev
@@ -38,10 +37,9 @@ class DiakController extends Controller
         ]);
     }
 
-    // KIJELENTKEZÉS
-    public function logout()
+    public function logout(Request $request)
     {
-        session()->forget('diak_id');
+        $request->user()->currentAccessToken()->delete();
 
         return response()->json([
             'message' => 'Sikeres kijelentkezés'
@@ -50,9 +48,9 @@ class DiakController extends Controller
 
     public function nemErtekeltTanarok(Request $request, $diakId)
     {
-        if (session('diak_id') != $diakId) {
+        if ($request->user()->id !== (int) $diakId) {
             return response()->json([
-                'message' => 'Hozzáférés megtagadva'
+                'message' => 'Nincs jogosultság'
             ], 403);
         }
 

@@ -9,8 +9,8 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::post('/diak/login', [DiakController::class, 'login']);
-Route::post('/diak/logout', [DiakController::class, 'logout']);
 
-Route::middleware('diak.auth')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/diak/logout', [DiakController::class, 'logout']);
     Route::get('/diak/{id}/hianyzo-ertekelesek', [DiakController::class, 'nemErtekeltTanarok']);
 });
