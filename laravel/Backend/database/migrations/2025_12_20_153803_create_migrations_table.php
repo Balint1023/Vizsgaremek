@@ -8,6 +8,13 @@ return new class extends Migration
 {
     public function up(): void
     {
+        //ADMIN
+        Schema::create('admin', function (Blueprint $table) {
+            $table->id();
+            $table->string('username');
+            $table->string('password');
+        });
+
         // TANÁR
         Schema::create('tanar', function (Blueprint $table) {
             $table->id();
