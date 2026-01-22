@@ -12,7 +12,8 @@ class TanarController extends Controller
      */
     public function index()
     {
-        //
+        $tanarok = Tanar::all();
+        return response()->json($tanarok);
     }
 
     /**

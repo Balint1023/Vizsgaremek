@@ -12,7 +12,8 @@ class CsoportController extends Controller
      */
     public function index()
     {
-        //
+        $csoportok = Csoport::all();
+        return response()->json($csoportok);
     }
 
     /**

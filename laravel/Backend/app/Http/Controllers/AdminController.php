@@ -27,7 +27,8 @@ class AdminController extends Controller
         $token = $admin->createToken('admin-token')->plainTextToken;
 
         return response()->json([
-            "message" => "Sikeres bejelentkezés"
+            "message" => "Sikeres bejelentkezés",
+            'token' => $token,
         ]);
     }
 
@@ -35,7 +36,7 @@ class AdminController extends Controller
     {
         $request->user()->currentAccessToken()->delete();
 
-        return response()->json(['message' => 'Logged out successfully']);
+        return response()->json(['message' => 'Sikeresen kijelentkezve']);
     }
 
     public function index()
