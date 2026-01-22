@@ -3,7 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CsoportController;
 use App\Http\Controllers\DiakController;
-
+use App\Http\Controllers\TanarController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/diak/login', [DiakController::class, 'login']);
