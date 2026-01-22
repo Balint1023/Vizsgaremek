@@ -2,18 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Diak extends Model
+class Diak extends Authenticatable
 {
     use HasApiTokens;
 
     protected $table = 'diak';
 
-    protected $fillable = ['id', 'nev'];
-
+    protected $primaryKey = 'id';
+    protected $keyType = 'int';
     public $incrementing = false;
+
+    protected $fillable = ['id', 'nev'];
 
     public function csoportok()
     {
