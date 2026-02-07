@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Feb 06. 11:00
+-- Létrehozás ideje: 2026. Feb 07. 13:53
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Adatbázis: `backend`
 --
+CREATE DATABASE IF NOT EXISTS `backend` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_hungarian_ci;
+USE `backend`;
 
 -- --------------------------------------------------------
 
@@ -202,6 +204,22 @@ CREATE TABLE `ertekeles` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- A tábla adatainak kiíratása `ertekeles`
+--
+
+INSERT INTO `ertekeles` (`id`, `tanar_id`, `diak_id`, `created_at`, `updated_at`) VALUES
+(5, 1, 71230002001, '2026-02-07 12:52:41', '2026-02-07 12:52:41'),
+(6, 3, 71230002001, '2026-02-07 12:52:41', '2026-02-07 12:52:41'),
+(7, 5, 71230002001, '2026-02-07 12:52:41', '2026-02-07 12:52:41'),
+(8, 7, 71230002001, '2026-02-07 12:52:41', '2026-02-07 12:52:41'),
+(9, 9, 71230002001, '2026-02-07 12:52:41', '2026-02-07 12:52:41'),
+(10, 2, 71230002002, '2026-02-07 12:52:41', '2026-02-07 12:52:41'),
+(11, 4, 71230002002, '2026-02-07 12:52:41', '2026-02-07 12:52:41'),
+(12, 6, 71230002002, '2026-02-07 12:52:41', '2026-02-07 12:52:41'),
+(13, 8, 71230002002, '2026-02-07 12:52:41', '2026-02-07 12:52:41'),
+(14, 10, 71230002002, '2026-02-07 12:52:41', '2026-02-07 12:52:41');
+
 -- --------------------------------------------------------
 
 --
@@ -267,6 +285,32 @@ CREATE TABLE `kerdesek` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- A tábla adatainak kiíratása `kerdesek`
+--
+
+INSERT INTO `kerdesek` (`id`, `tipus_id`, `leiras`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Év elején a tantárgya oktatásának megkezdésekor vagy egy-egy projekt előtt ismerteti az elvárásokat a szülőkkel, tanulókkal.', '2026-02-07 12:41:29', '2026-02-07 12:41:29'),
+(2, 1, 'A tanulók értékelése következetes, fejlesztő hatású.', '2026-02-07 12:41:29', '2026-02-07 12:41:29'),
+(3, 1, 'Tervezésében figyelembe veszi a tanulói igényeket és adottságokat, a tehetséges tanulóknak fejlődési lehetőséget biztosít, a lemaradó tanulókat igyekszik felzárkóztatni.', '2026-02-07 12:41:29', '2026-02-07 12:41:29'),
+(4, 1, 'Oktató-nevelő munkájában szerepet kap a tanulók motiválása, épít a tanulók tevékeny részvételére.', '2026-02-07 12:41:29', '2026-02-07 12:41:29'),
+(5, 1, 'Tervezésében épít a tanulók előzetes tudására, valamint a duális képzőhelyen szerzett ismeretekre, tapasztalatokra.', '2026-02-07 12:41:29', '2026-02-07 12:41:29'),
+(6, 1, 'A tanítási órákon használja a digitális oktatás módszereit és eszközeit (pl. szakmára jellemző szoftverek vagy számítógép, okostelefon).', '2026-02-07 12:41:29', '2026-02-07 12:41:29'),
+(7, 1, 'A tanítási órákon figyelembe veszi a tanulók szakmáját, a duális képzőhely szerepét.', '2026-02-07 12:41:29', '2026-02-07 12:41:29'),
+(8, 1, 'Feleltetésnél, dolgozatírásnál mindig ismerteti az elvárásokat, amelyek segítenek felkészülni a vizsgára.', '2026-02-07 12:41:29', '2026-02-07 12:41:29'),
+(9, 1, 'Teljesíthető követelményeket támaszt, és aszerint értékel.', '2026-02-07 12:41:29', '2026-02-07 12:41:29'),
+(10, 1, 'A házi feladatokat, a tanulói munkákat rendszeresen ellenőrzi és értékeli, a visszajelzései egyértelműek, tárgyilagosak, fejlesztő hatásúak.', '2026-02-07 12:41:29', '2026-02-07 12:41:29'),
+(11, 1, 'Év elején a tantárgya oktatásának megkezdésekor vagy egy-egy projekt előtt ismerteti az elvárásokat a szülőkkel, tanulókkal.', '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(12, 1, 'A tanulók értékelése következetes, fejlesztő hatású.', '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(13, 1, 'Tervezésében figyelembe veszi a tanulói igényeket és adottságokat, a tehetséges tanulóknak fejlődési lehetőséget biztosít, a lemaradó tanulókat igyekszik felzárkóztatni.', '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(14, 1, 'Oktató-nevelő munkájában szerepet kap a tanulók motiválása, épít a tanulók tevékeny részvételére.', '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(15, 1, 'Tervezésében épít a tanulók előzetes tudására, valamint a duális képzőhelyen szerzett ismeretekre, tapasztalatokra.', '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(16, 1, 'A tanítási órákon használja a digitális oktatás módszereit és eszközeit (pl. szakmára jellemző szoftverek vagy számítógép, okostelefon).', '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(17, 1, 'A tanítási órákon figyelembe veszi a tanulók szakmáját, a duális képzőhely szerepét.', '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(18, 1, 'Feleltetésnél, dolgozatírásnál mindig ismerteti az elvárásokat, amelyek segítenek felkészülni a vizsgára.', '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(19, 1, 'Teljesíthető követelményeket támaszt, és aszerint értékel.', '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(20, 1, 'A házi feladatokat, a tanulói munkákat rendszeresen ellenőrzi és értékeli, a visszajelzései egyértelműek, tárgyilagosak, fejlesztő hatásúak.', '2026-02-07 12:43:53', '2026-02-07 12:43:53');
+
 -- --------------------------------------------------------
 
 --
@@ -279,6 +323,13 @@ CREATE TABLE `kerdes_tipusok` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- A tábla adatainak kiíratása `kerdes_tipusok`
+--
+
+INSERT INTO `kerdes_tipusok` (`id`, `megnevezes`, `created_at`, `updated_at`) VALUES
+(1, 'diák', '2026-02-07 12:41:29', '2026-02-07 12:41:29');
 
 -- --------------------------------------------------------
 
@@ -362,6 +413,22 @@ CREATE TABLE `tanar` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- A tábla adatainak kiíratása `tanar`
+--
+
+INSERT INTO `tanar` (`id`, `nev`, `created_at`, `updated_at`) VALUES
+(1, 'Kovács Péter', '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(2, 'Szabó Anna', '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(3, 'Tóth László', '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(4, 'Nagy Éva', '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(5, 'Farkas Gábor', '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(6, 'Varga Katalin', '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(7, 'Horváth Zoltán', '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(8, 'Molnár Judit', '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(9, 'Balogh Tamás', '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(10, 'Kiss Mónika', '2026-02-07 12:43:53', '2026-02-07 12:43:53');
+
 -- --------------------------------------------------------
 
 --
@@ -375,6 +442,22 @@ CREATE TABLE `tanar_csoport` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- A tábla adatainak kiíratása `tanar_csoport`
+--
+
+INSERT INTO `tanar_csoport` (`id`, `tanar_id`, `csoport_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(2, 2, 1, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(3, 3, 2, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(4, 4, 2, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(5, 5, 3, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(6, 6, 3, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(7, 7, 1, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(8, 8, 2, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(9, 9, 3, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(10, 10, 1, '2026-02-07 12:43:53', '2026-02-07 12:43:53');
 
 -- --------------------------------------------------------
 
@@ -407,6 +490,18 @@ CREATE TABLE `valaszok` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- A tábla adatainak kiíratása `valaszok`
+--
+
+INSERT INTO `valaszok` (`id`, `kerdes_id`, `tanar_id`, `ertek`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 4, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(2, 2, 1, 3, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(3, 3, 1, 4, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(4, 4, 1, 3, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(5, 1, 2, 2, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
+(6, 2, 2, 3, '2026-02-07 12:43:53', '2026-02-07 12:43:53');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -563,7 +658,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT a táblához `csoport`
 --
 ALTER TABLE `csoport`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT a táblához `diak`
@@ -575,13 +670,13 @@ ALTER TABLE `diak`
 -- AUTO_INCREMENT a táblához `diak_csoport`
 --
 ALTER TABLE `diak_csoport`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT a táblához `ertekeles`
 --
 ALTER TABLE `ertekeles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT a táblához `failed_jobs`
@@ -599,13 +694,13 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT a táblához `kerdesek`
 --
 ALTER TABLE `kerdesek`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT a táblához `kerdes_tipusok`
 --
 ALTER TABLE `kerdes_tipusok`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT a táblához `migrations`
@@ -623,13 +718,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT a táblához `tanar`
 --
 ALTER TABLE `tanar`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT a táblához `tanar_csoport`
 --
 ALTER TABLE `tanar_csoport`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT a táblához `users`
@@ -641,7 +736,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT a táblához `valaszok`
 --
 ALTER TABLE `valaszok`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Megkötések a kiírt táblákhoz
