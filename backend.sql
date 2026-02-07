@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Feb 07. 13:53
+-- Létrehozás ideje: 2026. Feb 07. 14:27
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -448,16 +448,24 @@ CREATE TABLE `tanar_csoport` (
 --
 
 INSERT INTO `tanar_csoport` (`id`, `tanar_id`, `csoport_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
-(2, 2, 1, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
-(3, 3, 2, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
-(4, 4, 2, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
-(5, 5, 3, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
-(6, 6, 3, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
-(7, 7, 1, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
-(8, 8, 2, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
-(9, 9, 3, '2026-02-07 12:43:53', '2026-02-07 12:43:53'),
-(10, 10, 1, '2026-02-07 12:43:53', '2026-02-07 12:43:53');
+(1, 1, 7, NULL, NULL),
+(2, 2, 7, NULL, NULL),
+(3, 1, 22, NULL, NULL),
+(4, 2, 22, NULL, NULL),
+(5, 3, 8, NULL, NULL),
+(6, 4, 8, NULL, NULL),
+(7, 3, 23, NULL, NULL),
+(8, 4, 23, NULL, NULL),
+(9, 5, 4, NULL, NULL),
+(10, 6, 4, NULL, NULL),
+(11, 5, 21, NULL, NULL),
+(12, 6, 21, NULL, NULL),
+(13, 7, 6, NULL, NULL),
+(14, 8, 6, NULL, NULL),
+(15, 9, 2, NULL, NULL),
+(16, 10, 2, NULL, NULL),
+(17, 9, 3, NULL, NULL),
+(18, 10, 20, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -712,7 +720,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT a táblához `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT a táblához `tanar`
@@ -724,7 +732,7 @@ ALTER TABLE `tanar`
 -- AUTO_INCREMENT a táblához `tanar_csoport`
 --
 ALTER TABLE `tanar_csoport`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT a táblához `users`

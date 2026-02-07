@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash; 
+use Illuminate\Support\Facades\Hash;
 
 
 class AdminController extends Controller
@@ -24,7 +24,7 @@ class AdminController extends Controller
 
         $admin->tokens()->delete();
 
-        $token = $admin->createToken('admin-token')->plainTextToken;
+        $token = $admin->createToken('admin-token', ['role-admin'])->plainTextToken;
 
         return response()->json([
             "message" => "Sikeres bejelentkezés",

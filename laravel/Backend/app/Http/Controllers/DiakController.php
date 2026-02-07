@@ -28,7 +28,7 @@ class DiakController extends Controller
 
         $diak->tokens()->delete();
 
-        $token = $diak->createToken('diak-token')->plainTextToken;
+        $token = $diak->createToken('diak-token', ['role-diak'])->plainTextToken;
 
         return response()->json([
             'token' => $token,
