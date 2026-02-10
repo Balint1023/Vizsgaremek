@@ -48,13 +48,9 @@ class DiakController extends Controller
         ]);
     }
 
-    public function nemErtekeltTanarok(Request $request, $diakId)
+    public function nemErtekeltTanarok(Request $request)
     {
-        if ($request->user()->id !== (int) $diakId) {
-            return response()->json([
-                'message' => 'Nincs jogosultság'
-            ], 403);
-        }
+        $diakId = $request->user()->id;
 
         // A diák csoportjai
         $csoportIds = DB::table('diak_csoport')
@@ -79,9 +75,9 @@ class DiakController extends Controller
     }
 
 
-    public function ertekelesKerdesek(Request $request, $diakId, $tanarId)
+    public function ertekelesKerdesek(Request $request, $tanarId)
     {
-        // biztonság: csak saját magát
+        $diakId = $request->user()->id;
         if ($request->user()->id !== (int) $diakId) {
             return response()->json(['message' => 'Nincs jogosultság'], 403);
         }
@@ -104,54 +100,61 @@ class DiakController extends Controller
         ]);
     }
 
-    public function ertekelesMentese(Request $request, $diakId, $tanarId)
-    {
-        if ($request->user()->id !== (int) $diakId) {
-            return response()->json(['message' => 'Nincs jogosultság'], 403);
-        }
+    public function ertekelesMentese(Request $request, $tanarId)
+{
+    // 1. A bejelentkezett diák azonosítása
+    $diakId = $request->user()->id;
 
-        $request->validate([
-            'valaszok' => 'required|array',
-            'valaszok.*.kerdes_id' => 'required|integer|exists:kerdesek,id',
-            'valaszok.*.pont' => 'required|integer|min:0|max:4'
-        ]);
+    // 2. Validáció
+    $request->validate([
+        'valaszok' => 'required|array',
+        'valaszok.*.kerdes_id' => 'required|integer|exists:kerdesek,id',
+        'valaszok.*.pont' => 'required|integer|min:0|max:4'
+    ]);
 
-        DB::transaction(function () use ($request, $diakId, $tanarId, &$points, &$questions) {
+    // Változók inicializálása a tranzakción kívül
+    $osszesPont = 0;
+    $valaszokSzama = 0;
 
-            // 1️⃣ értékelés létrehozása
+    try {
+        DB::transaction(function () use ($request, $diakId, $tanarId, &$osszesPont, &$valaszokSzama) {
+            
+            // 3. Értékelés rekord létrehozása (hogy tudjuk, a diák végzett ezzel a tanárral)
             Ertekeles::create([
-                'diak_id' => $diakId,
+                'diak_id'  => $diakId,
                 'tanar_id' => $tanarId,
+                'datum'    => now(), // Ha van ilyen meződ
             ]);
 
-            $points = 0;
-            $questions = 0;
-
-            // 2️⃣ válaszok feldolgozása
+            // 4. Válaszok elmentése
             foreach ($request->valaszok as $valasz) {
-
                 Valasz::create([
                     'kerdes_id' => $valasz['kerdes_id'],
-                    'tanar_id' => $tanarId,
-                    'ertek' => $valasz['pont'],
+                    'tanar_id'  => $tanarId, // Itt a tanárhoz kötjük a választ
+                    'ertek'     => $valasz['pont'],
+                    // Ha a Válasz tábla az Értékeléshez is kötődik, akkor annak az ID-ja is kéne ide!
                 ]);
 
-                // pontszám logika
+                // Pontszám számítás (csak ha nem 0, azaz nem "Nincs információm")
                 if ($valasz['pont'] > 0) {
-                    $points += $valasz['pont'];
-                    $questions++;
+                    $osszesPont += $valasz['pont'];
+                    $valaszokSzama++;
                 }
             }
         });
 
-        // 3️⃣ átlag számítása
-        $atlag = $questions > 0 ? round($points / $questions, 2) : null;
+        $atlag = $valaszokSzama > 0 ? round($osszesPont / $valaszokSzama, 2) : 0;
 
         return response()->json([
-            'message' => 'Értékelés mentve',
-            'points' => $points,
-            'questions' => $questions,
-            'atlag' => $atlag
-        ]);
+            'message' => 'Sikeres mentés!',
+            'atlag' => $atlag,
+            'valaszolt_kerdesek' => $valaszokSzama
+        ], 201);
+
+    } catch (\Exception $e) {
+        return response()->json([
+            'message' => 'Hiba történt a mentés során: ' . $e->getMessage()
+        ], 500);
     }
+}
 }

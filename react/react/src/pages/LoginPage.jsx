@@ -5,10 +5,9 @@ const LoginPage = () => {
     const navigate = useNavigate();
 
     const handleLoginSuccess = () => {
-        console.log("Átirányítás indítása...");
-        const user = JSON.parse(localStorage.getItem('user'));
-
-        navigate(`/diak/${user.id}/hianyzo-ertekelesek`);
+        // Egyszerűen átirányítunk a fix útvonalra
+        // A szerver a Token alapján tudni fogja, ki kérdezi le az adatokat
+        navigate('/hianyzo-ertekelesek');
     };
 
     return (

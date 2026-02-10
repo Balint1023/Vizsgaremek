@@ -24,7 +24,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::middleware('abilities:role-diak')->group(function () {
         Route::post('/diak/logout', [DiakController::class, 'logout']);
 
-        Route::get('/diak/{id}/hianyzo-ertekelesek', [DiakController::class, 'nemErtekeltTanarok']);
-        Route::get('/diak/{diakId}/tanar/{tanarId}/kerdesek', [DiakController::class, 'ertekelesKerdesek']);
+        Route::get('/hianyzo-ertekelesek', [DiakController::class, 'nemErtekeltTanarok']);
+        Route::get('/tanar/{tanarId}/kerdesek', [DiakController::class, 'ertekelesKerdesek']);
+        Route::post('/tanar/{tanarId}/ertekeles', [DiakController::class, 'ertekelesMentese']);
     });
 });

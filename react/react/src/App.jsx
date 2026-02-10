@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import HianyzoErtekelesek from './pages/HianyzoErtekelesekPage';
+import ErtekelesPage from './pages/ErtekelesPage';
 
 const PrivateRoute = ({ children }) => {
   const isAuthenticated = !!localStorage.getItem('token');
@@ -15,12 +16,16 @@ function App() {
 
         {/* Védett útvonalak */}
         <Route
-          path="/diak/:id/hianyzo-ertekelesek"
+          path="/hianyzo-ertekelesek"
           element={
             <PrivateRoute>
               <HianyzoErtekelesek />
             </PrivateRoute>
           }
+        />
+        <Route 
+          path="/tanar/:tanarId/ertekeles" 
+          element={<PrivateRoute><ErtekelesPage /></PrivateRoute>} 
         />
 
         <Route path="/" element={<Navigate replace to="/login" />} />
