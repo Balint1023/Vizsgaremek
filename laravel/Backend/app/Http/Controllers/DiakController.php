@@ -91,11 +91,11 @@ class DiakController extends Controller
             'tanar_id' => $tanarId,
             'kerdesek' => $kerdesek,
             'valaszlehetosegek' => [
-                ['pont' => 0, 'szoveg' => 'Nincs információm'],
-                ['pont' => 1, 'szoveg' => 'Egyáltalán nem igaz'],
-                ['pont' => 2, 'szoveg' => 'Többnyire nem igaz'],
-                ['pont' => 3, 'szoveg' => 'Általában igaz'],
                 ['pont' => 4, 'szoveg' => 'Teljesen igaz'],
+                ['pont' => 3, 'szoveg' => 'Általában igaz'],
+                ['pont' => 2, 'szoveg' => 'Többnyire nem igaz'],
+                ['pont' => 1, 'szoveg' => 'Egyáltalán nem igaz'],
+                ['pont' => 0, 'szoveg' => 'Nincs információm'],
             ]
         ]);
     }
