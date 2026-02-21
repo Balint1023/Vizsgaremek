@@ -5,7 +5,6 @@ const LoginForm = ({ onLoginSuccess }) => {
     const [error, setError] = useState('');
 
     const handleSubmit = async (e) => {
-        console.log("Submit elindult!");
         e.preventDefault();
         setError('');
 
@@ -27,7 +26,6 @@ const LoginForm = ({ onLoginSuccess }) => {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user', JSON.stringify(data.diak));
 
-                console.log("Meghívom a handleLoginSuccess-t...");
                 onLoginSuccess();
             } else {
                 setError(data.message || 'Sikertelen bejelentkezés');

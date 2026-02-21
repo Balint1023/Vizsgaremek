@@ -1,12 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import LoginForm from '../components/Login/LoginForm';
+import LoginForm from '../components/login/LoginForm';
 
 const LoginPage = () => {
     const navigate = useNavigate();
 
     const handleLoginSuccess = () => {
-        // Egyszerűen átirányítunk a fix útvonalra
-        // A szerver a Token alapján tudni fogja, ki kérdezi le az adatokat
         navigate('/hianyzo-ertekelesek');
     };
 

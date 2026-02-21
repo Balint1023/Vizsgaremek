@@ -9,7 +9,7 @@ const HianyzoErtekelesek = () => {
 
   useEffect(() => {
     const fetchTanarok = async () => {
-      const token = localStorage.getItem("token"); // Token lekérése
+      const token = localStorage.getItem("token");
 
       if (!token) {
         setError("Bejelentkezés szükséges.");
@@ -21,7 +21,7 @@ const HianyzoErtekelesek = () => {
         const response = await fetch(`http://localhost:8000/api/hianyzo-ertekelesek`, {
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ${token}`, // Itt használjuk a változót
+            'Authorization': `Bearer ${token}`,
             'Accept': 'application/json'
           }
         });
@@ -40,7 +40,7 @@ const HianyzoErtekelesek = () => {
     };
 
     fetchTanarok();
-  }, []); // Nem kell az [id] függőség, mert nincs ID az URL-ben
+  }, []);
 
   if (loading) return <p className="container mt-5">Betöltés...</p>;
   if (error) return <p className="container mt-5 text-danger">{error}</p>;
@@ -57,7 +57,6 @@ const HianyzoErtekelesek = () => {
               {tanar.nev}
               <button
                 className="btn btn-primary btn-sm"
-                // Itt már az új, diákId nélküli útvonalat használjuk
                 onClick={() => navigate(`/tanar/${tanar.id}/ertekeles`)}
               >
                 Értékelés indítása
