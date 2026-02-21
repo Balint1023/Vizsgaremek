@@ -2,10 +2,9 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const ErtekelesPage = () => {
-    // Csak a tanarId-re van szükségünk a URL-ből!
     const { tanarId } = useParams();
     const navigate = useNavigate();
-    
+
     const [adatok, setAdatok] = useState(null);
     const [valaszok, setValaszok] = useState({});
     const [loading, setLoading] = useState(true);
@@ -16,9 +15,8 @@ const ErtekelesPage = () => {
         const fetchKerdesek = async () => {
             const token = localStorage.getItem('token');
             try {
-                // A URL-ből eltűnt a diák azonosító
                 const response = await fetch(`http://localhost:8000/api/tanar/${tanarId}/kerdesek`, {
-                    headers: { 
+                    headers: {
                         'Authorization': `Bearer ${token}`,
                         'Accept': 'application/json'
                     }
@@ -27,7 +25,7 @@ const ErtekelesPage = () => {
                 if (response.ok) {
                     const data = await response.json();
                     setAdatok(data);
-                    
+
                     const alapValaszok = {};
                     data.kerdesek.forEach(k => { alapValaszok[k.id] = 0; });
                     setValaszok(alapValaszok);
@@ -41,7 +39,7 @@ const ErtekelesPage = () => {
             }
         };
         fetchKerdesek();
-    }, [tanarId]); // Csak a tanarId-től függ
+    }, [tanarId]);
 
     const handleRadioChange = (kerdesId, pont) => {
         setValaszok(prev => ({ ...prev, [kerdesId]: parseInt(pont) }));
@@ -60,7 +58,6 @@ const ErtekelesPage = () => {
         };
 
         try {
-            // Itt volt a hiba: az URL-t leegyszerűsítettük!
             const response = await fetch(`http://localhost:8000/api/tanar/${tanarId}/ertekeles`, {
                 method: 'POST',
                 headers: {
@@ -73,7 +70,6 @@ const ErtekelesPage = () => {
 
             if (response.ok) {
                 alert('Értékelés sikeresen mentve!');
-                // Mentés után visszaküldjük a listához
                 navigate('/hianyzo-ertekelesek');
             } else {
                 alert('Hiba történt a mentés során.');
@@ -108,7 +104,7 @@ const ErtekelesPage = () => {
                                             onChange={() => handleRadioChange(kerdes.id, v.pont)}
                                         />
                                         <label className="form-check-label" htmlFor={`q-${kerdes.id}-p-${v.pont}`}>
-                                            {v.szoveg} ({v.pont})
+                                            {v.szoveg}
                                         </label>
                                     </div>
                                 ))}

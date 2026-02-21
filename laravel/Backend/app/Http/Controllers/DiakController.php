@@ -101,60 +101,59 @@ class DiakController extends Controller
     }
 
     public function ertekelesMentese(Request $request, $tanarId)
-{
-    // 1. A bejelentkezett diák azonosítása
-    $diakId = $request->user()->id;
+    {
+        // 1. A bejelentkezett diák azonosítása
+        $diakId = $request->user()->id;
 
-    // 2. Validáció
-    $request->validate([
-        'valaszok' => 'required|array',
-        'valaszok.*.kerdes_id' => 'required|integer|exists:kerdesek,id',
-        'valaszok.*.pont' => 'required|integer|min:0|max:4'
-    ]);
+        // 2. Validáció
+        $request->validate([
+            'valaszok' => 'required|array',
+            'valaszok.*.kerdes_id' => 'required|integer|exists:kerdesek,id',
+            'valaszok.*.pont' => 'required|integer|min:0|max:4'
+        ]);
 
-    // Változók inicializálása a tranzakción kívül
-    $osszesPont = 0;
-    $valaszokSzama = 0;
+        // Változók inicializálása a tranzakción kívül
+        $osszesPont = 0;
+        $valaszokSzama = 0;
 
-    try {
-        DB::transaction(function () use ($request, $diakId, $tanarId, &$osszesPont, &$valaszokSzama) {
-            
-            // 3. Értékelés rekord létrehozása (hogy tudjuk, a diák végzett ezzel a tanárral)
-            Ertekeles::create([
-                'diak_id'  => $diakId,
-                'tanar_id' => $tanarId,
-                'datum'    => now(), // Ha van ilyen meződ
-            ]);
+        try {
+            DB::transaction(function () use ($request, $diakId, $tanarId, &$osszesPont, &$valaszokSzama) {
 
-            // 4. Válaszok elmentése
-            foreach ($request->valaszok as $valasz) {
-                Valasz::create([
-                    'kerdes_id' => $valasz['kerdes_id'],
-                    'tanar_id'  => $tanarId, // Itt a tanárhoz kötjük a választ
-                    'ertek'     => $valasz['pont'],
-                    // Ha a Válasz tábla az Értékeléshez is kötődik, akkor annak az ID-ja is kéne ide!
+                // 3. Értékelés rekord létrehozása (hogy tudjuk, a diák végzett ezzel a tanárral)
+                Ertekeles::create([
+                    'diak_id'  => $diakId,
+                    'tanar_id' => $tanarId,
+                    'datum'    => now(), // Ha van ilyen meződ
                 ]);
 
-                // Pontszám számítás (csak ha nem 0, azaz nem "Nincs információm")
-                if ($valasz['pont'] > 0) {
-                    $osszesPont += $valasz['pont'];
-                    $valaszokSzama++;
+                // 4. Válaszok elmentése
+                foreach ($request->valaszok as $valasz) {
+                    Valasz::create([
+                        'kerdes_id' => $valasz['kerdes_id'],
+                        'tanar_id'  => $tanarId, // Itt a tanárhoz kötjük a választ
+                        'ertek'     => $valasz['pont'],
+                        // Ha a Válasz tábla az Értékeléshez is kötődik, akkor annak az ID-ja is kéne ide!
+                    ]);
+
+                    // Pontszám számítás (csak ha nem 0, azaz nem "Nincs információm")
+                    if ($valasz['pont'] > 0) {
+                        $osszesPont += $valasz['pont'];
+                        $valaszokSzama++;
+                    }
                 }
-            }
-        });
+            });
 
-        $atlag = $valaszokSzama > 0 ? round($osszesPont / $valaszokSzama, 2) : 0;
+            $atlag = $valaszokSzama > 0 ? round($osszesPont / $valaszokSzama, 2) : 0;
 
-        return response()->json([
-            'message' => 'Sikeres mentés!',
-            'atlag' => $atlag,
-            'valaszolt_kerdesek' => $valaszokSzama
-        ], 201);
-
-    } catch (\Exception $e) {
-        return response()->json([
-            'message' => 'Hiba történt a mentés során: ' . $e->getMessage()
-        ], 500);
+            return response()->json([
+                'message' => 'Sikeres mentés!',
+                'atlag' => $atlag,
+                'valaszolt_kerdesek' => $valaszokSzama
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Hiba történt a mentés során: ' . $e->getMessage()
+            ], 500);
+        }
     }
-}
 }

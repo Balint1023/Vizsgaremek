@@ -25,6 +25,7 @@ const LoginForm = ({ onLoginSuccess }) => {
 
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user', JSON.stringify(data.diak));
+                localStorage.setItem('role', 'diak');
 
                 onLoginSuccess();
             } else {
