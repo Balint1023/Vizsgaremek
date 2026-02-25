@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Layout from '../Layout';
 
 const LoginForm = ({ onLoginSuccess }) => {
     const [diakId, setDiakId] = useState('');
@@ -38,18 +39,29 @@ const LoginForm = ({ onLoginSuccess }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="login-form">
-            <h2>Diák Bejelentkezés</h2>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            <input
-                type="number"
-                placeholder="Oktatási azonosító"
-                value={diakId}
-                onChange={(e) => setDiakId(e.target.value)}
-                required
-            />
-            <button type="submit">Belépés</button>
-        </form>
+        <Layout>
+            <div className="login-header">
+                <h1>Minőségirányítás</h1>
+                <h3>Tanulói kérdőív</h3>
+            </div>
+
+            <p className="description-text">
+                Oktatási azonosítódat a diákigazolványodon találod.
+                Ha szükséges, kérj segítséget osztályfőnöködtől!
+            </p>
+
+            <div className="login-body-flex">
+                <form className="form-section" onSubmit={handleSubmit}>
+                    <label>OM azonosító</label>
+                    <input type="number" value={diakId} onChange={(e) => setDiakId(e.target.value)} required />
+                    <button type="submit" className="login-btn">Bejelentkezés</button>
+                </form>
+
+                <div className="image-section">
+                    <img src="diak.jpg" alt="Azonosító segédlet" />
+                </div>
+            </div>
+        </Layout>
     );
 };
 

@@ -1,0 +1,91 @@
+.app-container {
+    background-color: #d1d1d1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 90%;
+    box-sizing: border-box;
+}
+
+.login-header {
+    text-align: center;
+}
+
+.login-header h1 {
+    letter-spacing: 4px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.login-body-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.form-section {
+    flex: 1;
+}
+
+.form-section label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form-section input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* A kék gomb */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.login-btn:hover {
+    background-color: #357abd;
+    transform: scale(1.02);
+}
+
+
+.image-section {
+    flex: 0 0 40%;
+}
+
+.image-section img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+}
+
+footer {
+    margin-top: 25px;
+    color: #444;
+    font-size: 0.9rem;
+}
