@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 
 class AdminController extends Controller
@@ -37,6 +38,26 @@ class AdminController extends Controller
         $request->user()->currentAccessToken()->delete();
 
         return response()->json(['message' => 'Sikeresen kijelentkezve']);
+    }
+
+    public function tanarStat($tanarId)
+    {
+        $statisztika = DB::table('valaszok')
+            ->join('kerdesek', 'valaszok.kerdes_id', '=', 'kerdesek.id')
+            ->where('valaszok.tanar_id', $tanarId)
+            ->where('valaszok.ertek', '>', 0)
+            ->select(
+                'kerdesek.leiras as kerdes',
+                DB::raw('ROUND(AVG(valaszok.ertek), 2) as atlag'),
+                DB::raw('COUNT(valaszok.id) as ervenyes_valaszok_szama')
+            )
+            ->groupBy('kerdesek.id', 'kerdesek.leiras')
+            ->get();
+
+        return response()->json([
+            'tanar' => DB::table('tanar')->where('id', $tanarId)->value('nev'),
+            'statisztika' => $statisztika
+        ]);
     }
 
     public function index()

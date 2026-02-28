@@ -3,7 +3,8 @@ import LoginPage from './pages/LoginPage';
 import HianyzoErtekelesek from './pages/HianyzoErtekelesekPage';
 import ErtekelesPage from './pages/ErtekelesPage';
 import AdminLoginPage from './pages/admin/AdminLoginPage';
-import AdminDashboard from './pages/admin/AdminDashBoard';
+import AdminDashboard from './pages/Admin/AdminDashboard';
+import AdminStats from './pages/Admin/AdminStats';
 
 // jogosultság ellenőrzése
 const PrivateRoute = ({ children, roleRequired }) => {
@@ -45,7 +46,7 @@ function App() {
           }
         />
 
-        {/* --- ADMIN ÚTVONALAK (ÚJ) --- */}
+        {/* --- ADMIN ÚTVONALAK (FRISSÍTETT NESTED ROUTING) --- */}
         <Route path="/admin/login" element={<AdminLoginPage />} />
 
         <Route
@@ -55,7 +56,15 @@ function App() {
               <AdminDashboard />
             </PrivateRoute>
           }
-        />
+        >
+          {/* Al-útvonalak: Ezek fognak megjelenni az AdminDashboard-ban az <Outlet /> helyén */}
+          <Route path="eredmenyek" element={<AdminStats />} />
+          <Route path="kerdoivek" element={<div>Kérdőívek kezelése</div>} />
+          <Route path="kerdesek" element={<div>Kérdések szerkesztése</div>} />
+
+          {/* Opcionális: Alapértelmezett nézet a dashboardon belül (pl. az Eredmények) */}
+          <Route index element={<Navigate replace to="eredmenyek" />} />
+        </Route>
 
         {/* --- ÁLTALÁNOS ÁTIRÁNYÍTÁSOK --- */}
         <Route path="/" element={<Navigate replace to="/login" />} />

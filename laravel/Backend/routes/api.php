@@ -16,6 +16,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // --- ADMIN JOGOSULTSÁGÚ VÉGPONTOK ---
     Route::middleware('abilities:role-admin')->group(function () {
         Route::post('/admin/logout', [AdminController::class, 'logout']);
+        Route::get('/admin/stat/tanar/{tanarID}', [AdminController::class, 'tanarStat']);
         Route::get('/tanarok', [TanarController::class, 'index']);
         Route::get('/csoportok', [CsoportController::class, 'index']);
     });
