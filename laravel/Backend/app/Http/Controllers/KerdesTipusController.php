@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\KerdesTipus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KerdesTipusController extends Controller
 {
@@ -12,7 +13,7 @@ class KerdesTipusController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(DB::table('kerdes_tipusok')->select('id', 'megnevezes')->get());
     }
 
     /**

@@ -4,6 +4,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CsoportController;
 use App\Http\Controllers\DiakController;
 use App\Http\Controllers\TanarController;
+use App\Http\Controllers\KerdesController;
+use App\Http\Controllers\KerdesTipusController;
 use Illuminate\Support\Facades\Route;
 
 // Nyilvános végpontok (Bejelentkezés)
@@ -19,6 +21,13 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/admin/stat/tanar/{tanarID}', [AdminController::class, 'tanarStat']);
         Route::get('/tanarok', [TanarController::class, 'index']);
         Route::get('/csoportok', [CsoportController::class, 'index']);
+
+        Route::get('/kerdesek', [KerdesController::class, 'index']);
+        Route::post('/kerdesek', [KerdesController::class, 'store']);
+        Route::put('/kerdesek/{id}', [KerdesController::class, 'update']);
+        Route::delete('/kerdesek/{id}', [KerdesController::class, 'destroy']);
+
+        Route::get('/kerdes-tipusok', [KerdesTipusController::class, 'index']);
     });
 
     // --- DIÁK JOGOSULTSÁGÚ VÉGPONTOK ---
