@@ -8,12 +8,18 @@ use App\Models\Kerdes;
 use App\Models\Valasz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Cache;
 
 class DiakController extends Controller
 {
     public function login(Request $request)
     {
+        if (!Cache::get('kerdoiv_aktiv', false)) {
+            return response()->json([
+                'message' => 'A bejelentkezés jelenleg szünetel, a kérdőív nincs megnyitva.'
+            ], 403);
+        }
+
         $request->validate([
             'diak_id' => 'required|integer'
         ]);

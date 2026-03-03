@@ -6,6 +6,7 @@ import AdminLoginPage from './pages/admin/AdminLoginPage';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 import AdminStats from './pages/Admin/AdminStats';
 import AdminQuestions from './pages/Admin/AdminQuestions';
+import AdminSurveyControlPage from './pages/Admin/AdminSurveyControlPage';
 
 // jogosultság ellenőrzése
 const PrivateRoute = ({ children, roleRequired }) => {
@@ -40,10 +41,10 @@ function App() {
           element={<PrivateRoute roleRequired="admin"><AdminDashboard /></PrivateRoute>}
         >
           {/* Ez az "index" route töltődik be alapból az /admin/dashboard címen */}
-          <Route index element={<Navigate replace to="eredmenyek" />} />
-          <Route path="eredmenyek" element={<AdminStats />} />
+          <Route index element={<Navigate replace to="kerdoivek" />} />
+          <Route path="kerdoivek" element={<AdminSurveyControlPage />} />
           <Route path="kerdesek" element={<AdminQuestions />} />
-          <Route path="kerdoivek" element={<div>Kérdőívek indítása/leállítása funkció</div>} />
+          <Route path="eredmenyek" element={<AdminStats />} />
         </Route>
 
         <Route path="*" element={<Navigate replace to="/login" />} />

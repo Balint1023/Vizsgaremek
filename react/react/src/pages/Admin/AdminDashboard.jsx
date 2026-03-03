@@ -4,7 +4,6 @@ import LogoutButton from "../../components/LogoutButton";
 const AdminDashboard = () => {
     return (
         <div className="admin-layout">
-            {/* BAL OLDAL - NAVBAR (Dizájnolható CSS-sel) */}
             <aside className="admin-sidebar">
                 <h2>Admin</h2>
                 <nav>

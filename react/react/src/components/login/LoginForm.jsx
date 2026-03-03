@@ -22,8 +22,6 @@ const LoginForm = ({ onLoginSuccess }) => {
             const data = await response.json();
 
             if (response.ok) {
-                console.log("Bejelentkezés sikeres, adatok:", data);
-
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user', JSON.stringify(data.diak));
                 localStorage.setItem('role', 'diak');

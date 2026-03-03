@@ -6,7 +6,7 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Cache;
 
 class AdminController extends Controller
 {
@@ -60,56 +60,17 @@ class AdminController extends Controller
         ]);
     }
 
-    public function index()
+    public function kerdoivStatuszModositas(Request $request)
     {
-        //
+        $request->validate(['aktiv' => 'required|boolean']);
+        Cache::forever('kerdoiv_aktiv', $request->aktiv);
+
+        return response()->json(['aktiv' => $request->aktiv]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function getKerdoivStatusz()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Admin $admin)
-    {
-        //
+        $statusz = Cache::get('kerdoiv_aktiv', false);
+        return response()->json(['aktiv' => (bool)$statusz]);
     }
 }

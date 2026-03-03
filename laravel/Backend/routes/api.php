@@ -18,15 +18,19 @@ Route::middleware('auth:sanctum')->group(function () {
     // --- ADMIN JOGOSULTSÁGÚ VÉGPONTOK ---
     Route::middleware('abilities:role-admin')->group(function () {
         Route::post('/admin/logout', [AdminController::class, 'logout']);
-        Route::get('/admin/stat/tanar/{tanarID}', [AdminController::class, 'tanarStat']);
-        Route::get('/tanarok', [TanarController::class, 'index']);
-        Route::get('/csoportok', [CsoportController::class, 'index']);
 
+        //kérdőív
+        Route::get('admin/kerdoiv-statusz', [AdminController::class, 'getKerdoivStatusz']);
+        Route::post('admin/kerdoiv-statusz', [AdminController::class, 'kerdoivStatuszModositas']);
+
+        //statisztika
+        Route::get('/admin/stat/tanar/{tanarID}', [AdminController::class, 'tanarStat']);
+
+        //kérdések
         Route::get('/kerdesek', [KerdesController::class, 'index']);
         Route::post('/kerdesek', [KerdesController::class, 'store']);
         Route::put('/kerdesek/{id}', [KerdesController::class, 'update']);
         Route::delete('/kerdesek/{id}', [KerdesController::class, 'destroy']);
-
         Route::get('/kerdes-tipusok', [KerdesTipusController::class, 'index']);
     });
 
