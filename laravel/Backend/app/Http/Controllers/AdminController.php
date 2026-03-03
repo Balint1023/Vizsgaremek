@@ -65,7 +65,7 @@ class AdminController extends Controller
         $request->validate(['aktiv' => 'required|boolean']);
         Cache::forever('kerdoiv_aktiv', $request->aktiv);
 
-        return response()->json(['aktiv' => $request->aktiv]);
+        return response()->json(['success' => true, 'aktiv' => $request->aktiv]);
     }
 
     public function getKerdoivStatusz()

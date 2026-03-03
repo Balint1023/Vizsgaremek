@@ -28,7 +28,7 @@ class DiakController extends Controller
 
         if (!$diak) {
             return response()->json([
-                'message' => 'Nincs ilyen diák'
+                'message' => 'Hibás OM azonosító!'
             ], 404);
         }
 

@@ -6,6 +6,7 @@
     align-items: center;
     justify-content: center;
     font-family: 'Segoe UI', sans-serif;
+    user-select: none;
 }
 
 .content {
@@ -16,6 +17,7 @@
     max-width: 800px;
     width: 90%;
     box-sizing: border-box;
+    position: relative;
 }
 
 .login-header {
@@ -52,9 +54,9 @@
     border-radius: 5px;
     margin-bottom: 20px;
     box-sizing: border-box;
+    transition: border-color 0.2s;
 }
 
-/* A kék gomb */
 .login-btn {
     width: 100%;
     padding: 12px;
@@ -67,14 +69,65 @@
     transition: all 0.2s ease-in-out;
 }
 
-.login-btn:hover {
+.login-btn:hover:not(:disabled) {
     background-color: #357abd;
     transform: scale(1.02);
 }
 
+.login-btn:disabled {
+    background-color: #b0b0b0;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.form-section input:disabled {
+    background-color: #f5f5f5;
+    color: #888;
+    cursor: not-allowed;
+}
+
+.status-closed-msg {
+    background-color: #fff3f3;
+    color: #d32f2f;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ffcdd2;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.error-popup {
+    position: fixed;
+    top: 25px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 1000;
+
+    background-color: #d32f2f;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    min-width: 280px;
+    justify-content: center;
+
+    opacity: 1;
+    animation: slideDown 0.4s ease-out forwards;
+}
+
+.error-popup.fade-out {
+    animation: fadeOut 0.5s ease-in forwards;
+}
 
 .image-section {
     flex: 0 0 40%;
+    pointer-events: none;
 }
 
 .image-section img {
@@ -88,4 +141,28 @@ footer {
     margin-top: 25px;
     color: #444;
     font-size: 0.9rem;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translate(-50%, -40px);
+    }
 }
