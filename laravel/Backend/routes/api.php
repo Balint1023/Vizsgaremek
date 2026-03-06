@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DiakController;
 use App\Http\Controllers\KerdesController;
 use App\Http\Controllers\KerdesTipusController;
+use App\Http\Controllers\TanarController;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
         //statisztika
         Route::get('/admin/stat/tanar/{tanarID}', [AdminController::class, 'tanarStat']);
+        Route::get('/tanarok', [TanarController::class, 'index']);
 
         //kérdések
         Route::get('/kerdesek', [KerdesController::class, 'index']);
