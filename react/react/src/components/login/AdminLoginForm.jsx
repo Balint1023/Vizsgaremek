@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import "./AdminLoginForm.css";
 
 const AdminLoginForm = ({ onLoginSuccess }) => {
     const [credentials, setCredentials] = useState({ username: '', password: '' });
@@ -37,25 +38,33 @@ const AdminLoginForm = ({ onLoginSuccess }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="admin-login-form">
-            <h2>Adminisztrátor Belépés</h2>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            <input
-                name="username"
-                type="text"
-                placeholder="Felhasználónév"
-                onChange={handleChange}
-                required
-            />
-            <input
-                name="password"
-                type="password"
-                placeholder="Jelszó"
-                onChange={handleChange}
-                required
-            />
-            <button type="submit">Belépés</button>
-        </form>
+        <div className="admin-login-wrapper">
+            <form onSubmit={handleSubmit} className="admin-login-form">
+                <h2>Admin Bejelentkezés</h2>
+
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+
+                <input
+                    name="username"
+                    type="text"
+                    placeholder="Felhasználónév"
+                    onChange={handleChange}
+                    required
+                />
+
+                <input
+                    name="password"
+                    type="password"
+                    placeholder="Jelszó"
+                    onChange={handleChange}
+                    required
+                />
+
+                <button type="submit">Bejelentkezés</button>
+            </form>
+
+            <img src="/logo.png" alt="logo" className="login-logo" />
+        </div>
     );
 };
 
