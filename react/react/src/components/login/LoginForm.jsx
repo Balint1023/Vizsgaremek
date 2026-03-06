@@ -56,13 +56,14 @@ const LoginForm = ({ onLoginSuccess }) => {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                 },
-                body: JSON.stringify({ diak_id: diakId }),
+                body: JSON.stringify({ diak_id: diakId}),
             });
 
             const data = await response.json();
 
             if (response.ok) {
                 localStorage.setItem('token', data.token);
+                localStorage.setItem('role', "diak");
                 onLoginSuccess();
             } else {
                 triggerError(data.message || 'Érvénytelen oktatási azonosító!');

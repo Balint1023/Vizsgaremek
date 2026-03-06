@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const HianyzoErtekelesek = () => {
   const navigate = useNavigate();
   const [tanarok, setTanarok] = useState([]);
-  const [selectedTanarId, setSelectedTanarId] = useState(""); // Kiválasztott tanár ID-ja
+  const [selectedTanarId, setSelectedTanarId] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -19,6 +19,7 @@ const HianyzoErtekelesek = () => {
       }
 
       try {
+        console.log("Kérés küldése a szervernek..."); // DEBUG log
         const response = await fetch(`http://localhost:8000/api/hianyzo-ertekelesek`, {
           method: 'GET',
           headers: {
@@ -27,13 +28,19 @@ const HianyzoErtekelesek = () => {
           }
         });
 
+        console.log("Válasz státusza:", response.status);
+        localStorage.getItem("token") // DEBUG log
+
         if (response.ok) {
-          const data = await response.json();
-          setTanarok(data);
+          const result = await response.json();
+          console.log("Kapott adatok:", result); // DEBUG log
+          setTanarok(result);
         } else {
-          setError("Hiba történt az adatok lekérésekor.");
+          const errorData = await response.json().catch(() => ({}));
+          setError(errorData.message || "Hiba történt az adatok lekérésekor.");
         }
-      } catch {
+      } catch (err) {
+        console.error("Hálózati hiba:", err);
         setError("Nem sikerült kapcsolódni a szerverhez.");
       } finally {
         setLoading(false);
@@ -49,15 +56,15 @@ const HianyzoErtekelesek = () => {
     }
   };
 
-  if (loading) return <p className="container mt-5">Betöltés...</p>;
-  if (error) return <p className="container mt-5 text-danger">{error}</p>;
+  if (loading) return <div className="container mt-5">Betöltés...</div>;
+  if (error) return <div className="container mt-5 text-danger">{error}</div>;
 
   return (
     <div className="container mt-4">
       <h1>Értékelendő tanárok</h1>
 
       {tanarok.length === 0 ? (
-        <p>Minden tanárt értékeltél már!</p>
+        <p className="alert alert-info">Minden tanárt értékeltél már!</p>
       ) : (
         <div className="card p-4 shadow-sm">
           <div className="mb-3">
@@ -80,7 +87,7 @@ const HianyzoErtekelesek = () => {
           <button
             className="btn btn-primary w-100"
             onClick={handleStartErtekeles}
-            disabled={!selectedTanarId} // Csak akkor kattintható, ha van választott tanár
+            disabled={!selectedTanarId}
           >
             Értékelés indítása
           </button>
