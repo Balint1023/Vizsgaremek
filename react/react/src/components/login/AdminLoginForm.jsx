@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import "./AdminLoginForm.css";
+import Layout from '../Layout';
 
 const AdminLoginForm = ({ onLoginSuccess }) => {
     const [credentials, setCredentials] = useState({ username: '', password: '' });
@@ -39,31 +40,40 @@ const AdminLoginForm = ({ onLoginSuccess }) => {
 
     return (
         <div className="admin-login-wrapper">
-            <form onSubmit={handleSubmit} className="admin-login-form">
+            <div className="admin-login-form-container">
                 <h2>Admin Bejelentkezés</h2>
 
-                {error && <p style={{ color: 'red' }}>{error}</p>}
+                <div className="login-content">
+                    <form onSubmit={handleSubmit} className="admin-login-form">
+                        {error && <p style={{ color: 'red', fontSize: '12px' }}>{error}</p>}
 
-                <input
-                    name="username"
-                    type="text"
-                    placeholder="Felhasználónév"
-                    onChange={handleChange}
-                    required
-                />
+                        <div className="input-group">
+                            <label>Felhasználónév</label>
+                            <input
+                                name="username"
+                                type="text"
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                <input
-                    name="password"
-                    type="password"
-                    placeholder="Jelszó"
-                    onChange={handleChange}
-                    required
-                />
+                        <div className="input-group">
+                            <label>Jelszó</label>
+                            <input
+                                name="password"
+                                type="password"
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                <button type="submit">Bejelentkezés</button>
-            </form>
+                        <button type="submit">Bejelentkezés</button>
+                    </form>
 
-            <img src="/logo.png" alt="logo" className="login-logo" />
+                    <img src="/mathiasz_logo.png" alt="logo" className="login-logo" />
+                </div>
+            </div>
+
         </div>
     );
 };
