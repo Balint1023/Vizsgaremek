@@ -1,0 +1,291 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.kerdoiv-konténer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.kerdoiv-kártya {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.kerdoiv-fejléc {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.logó {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 5px;
+}
+
+.fejlec-szöveg {
+  flex: 1;
+  min-width: 200px;
+}
+
+.fejlec-szöveg h1 {
+  font-size: 28px;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.fejlec-szöveg p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.fejlec-gombok {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.vissza-gomb,
+.kijelentkezes-gomb,
+.kuldes-gomb {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.vissza-gomb {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+}
+
+.vissza-gomb:hover {
+  background: white;
+  color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.kijelentkezes-gomb {
+  background: #ff6b6b;
+  color: white;
+}
+
+.kijelentkezes-gomb:hover {
+  background: #ff5252;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+.kuldes-gomb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  margin-top: 30px;
+}
+
+.kuldes-gomb:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.kuldes-gomb:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.kerdoiv-forma {
+  padding: 40px;
+}
+
+.kerdesek {
+  margin-bottom: 30px;
+}
+
+.kerdes-csoport {
+  margin-bottom: 35px;
+  padding-bottom: 25px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.kerdes-csoport:last-child {
+  border-bottom: none;
+}
+
+.kerdes-csoport h3 {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.radio-opciok {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-left: 10px;
+}
+
+.radio-cimke {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 12px 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background: #f9f9f9;
+  border: 2px solid transparent;
+}
+
+.radio-cimke:hover {
+  background: #f0f0f0;
+  border-color: #667eea;
+}
+
+.radio-cimke input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  margin-right: 12px;
+  accent-color: #667eea;
+}
+
+.radio-cimke span {
+  font-size: 15px;
+  color: #555;
+  font-weight: 500;
+}
+
+.radio-cimke input[type="radio"]:checked + span {
+  color: #667eea;
+  font-weight: 600;
+}
+
+.hiba {
+  background: #ffe5e5;
+  color: #d63031;
+  padding: 15px 20px;
+  border-radius: 8px;
+  border-left: 4px solid #d63031;
+  margin: 20px 0;
+  font-weight: 500;
+}
+
+.siker {
+  background: #d4edda;
+  color: #155724;
+  padding: 15px 20px;
+  border-radius: 8px;
+  border-left: 4px solid #28a745;
+  margin: 20px 0;
+  font-weight: 500;
+  animation: pulse 0.5s ease;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.98);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .kerdoiv-fejléc {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .fejlec-szöveg {
+    width: 100%;
+  }
+
+  .fejlec-gombok {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .fejlec-gombok button {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .kerdoiv-forma {
+    padding: 20px;
+  }
+
+  .kerdes-csoport h3 {
+    font-size: 15px;
+  }
+
+  .radio-cimke {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fejlec-szöveg h1 {
+    font-size: 22px;
+  }
+
+  .kerdoiv-forma {
+    padding: 15px;
+  }
+
+  .kuldes-gomb {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .radio-cimke input[type="radio"] {
+    width: 16px;
+    height: 16px;
+  }
+}
