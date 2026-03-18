@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import "./AdminLoginForm.css";
+import "../Layout.css"
 import Layout from '../Layout';
 
 const AdminLoginForm = ({ onLoginSuccess }) => {
@@ -72,8 +73,11 @@ const AdminLoginForm = ({ onLoginSuccess }) => {
 
                     <img src="/mathiasz_logo.png" alt="logo" className="login-logo" />
                 </div>
-            </div>
 
+            </div>
+            <footer>
+                <p>© 2026 Vizsgaremek - Minden jog fenntartva</p>
+            </footer>
         </div>
     );
 };

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import "../LoginForm.css";
 import Layout from '../Layout';
 
 const LoginForm = ({ onLoginSuccess }) => {
@@ -56,7 +57,7 @@ const LoginForm = ({ onLoginSuccess }) => {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                 },
-                body: JSON.stringify({ diak_id: diakId}),
+                body: JSON.stringify({ diak_id: diakId }),
             });
 
             const data = await response.json();
