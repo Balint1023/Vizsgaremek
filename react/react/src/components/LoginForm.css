@@ -3,8 +3,9 @@
 }
 
 .login-header h1 {
-    letter-spacing: 4px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 30px;
+    letter-spacing: 3px;
+    font-weight: 500;
 }
 
 .login-body-flex {

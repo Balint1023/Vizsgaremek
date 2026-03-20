@@ -1,134 +1,84 @@
-/* A teljes hátteret szürkére állítjuk, hogy kiemelkedjen a fehér kártya */
-.admin-login-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #d1d1d1; /* Világosszürke háttér */
-    font-family: 'Arial', sans-serif;
+.admin-login-form-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 30px;
+    letter-spacing: 3px;
+    font-weight: 500;
 }
 
-/* A fehér bejelentkező kártya */
-.admin-login-form-container {
-    background-color: #ffffff;
-    padding: 20px 30px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 600px;
-    width: 100%;
-}
-
-/* Cím */
-.admin-login-form-container h2 {
-    font-style: italic;
-    font-weight: 600;
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #000;
-}
-
-/* Belső elrendezés: Form és Logo egymás mellett */
 .login-content {
     display: flex;
-    gap: 60px;
-    align-items: flex-start;
-    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
 }
 
-/* Form stílusai */
 .admin-login-form {
-    display: flex;
-    flex-direction: column;
     flex: 1;
+    max-width: 450px;
 }
 
 .input-group {
     margin-bottom: 15px;
-    display: flex;
-    flex-direction: column;
 }
 
 .input-group label {
+    display: block;
     font-size: 14px;
     margin-bottom: 5px;
     color: #333;
 }
 
-/* Input mezők */
-.admin-login-form input {
-    background-color: #eeeeee;
-    border: none;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-radius: 4px;
-    font-size: 14px;
+.input-group input {
     width: 100%;
+    height: 30px;
+    border: none;
+    background-color: #e5e5e5;
+    border-radius: 4px;
+    padding-left: 10px;
+    outline: none;
 }
 
-/* Gomb stílusa */
 .admin-login-form button {
-    background-color: #6384f5; /* A képen látható kék szín */
+    margin-top: 15px;
+    width: 100%;
+    padding: 12px;
+    background-color: #4a90e2;
     color: white;
     border: none;
-    padding: 12px;
-    border-radius: 10px;
-    font-size: 15px;
+    border-radius: 8px;
+    font-weight: bold;
     cursor: pointer;
-    margin-top: 20px;
     transition: all 0.2s ease-in-out;
-    width: 100%;
+}
+
+.admin-login-form button:hover:not(:disabled) {
+    background-color: #357abd;
+    transform: scale(1.02);
+}
+
+.login-logo {
+    width: 130px;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+.admin-login-form p {
     margin-bottom: 10px;
 }
 
-.admin-login-form button:hover {
-    background-color: #4e6edb;
-    transform: scale(1.02)
-}
-
-/* Logó méretezése */
-.login-logo {
-    width: 150px;
-    height: auto;
-    object-fit: contain;
-}
-
-footer {
-    margin-top: 25px;
-    color: #444;
-    font-size: 0.9rem;
-}
-
-@media (max-width: 600px) {
-    /* A fehér kártya paddingjét csökkentjük mobilon */
-    .admin-login-form-container {
-        padding: 20px;
-        width: 95%;
+@media (max-width: 700px) {
+    .login-content {
+        flex-direction: row;
+        align-items: center;
     }
 
-    /* A logót elrejtjük */
     .login-logo {
         display: none;
     }
 
-    /* A tartalom elrendezését módosítjuk: 
-       kivesszük a gap-et és biztosítjuk, hogy a form kitöltse a helyet */
-    .login-content {
-        gap: 0;
-        justify-content: center;
-    }
-
-    /* A formot középre igazítjuk */
     .admin-login-form {
-        width: 100%;
         max-width: 100%;
-    }
-
-    /* Opcionális: A címet kicsit kisebbre vehetjük mobilon */
-    .admin-login-form-container h2 {
-        font-size: 20px;
-        text-align: center;
     }
 }

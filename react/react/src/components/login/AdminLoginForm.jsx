@@ -40,9 +40,10 @@ const AdminLoginForm = ({ onLoginSuccess }) => {
     };
 
     return (
-        <div className="admin-login-wrapper">
+        <Layout>
+            <div className="admin-login-wrapper">
             <div className="admin-login-form-container">
-                <h2>Admin Bejelentkezés</h2>
+                <h1>Admin Bejelentkezés</h1>
 
                 <div className="login-content">
                     <form onSubmit={handleSubmit} className="admin-login-form">
@@ -73,12 +74,9 @@ const AdminLoginForm = ({ onLoginSuccess }) => {
 
                     <img src="/mathiasz_logo.png" alt="logo" className="login-logo" />
                 </div>
-
             </div>
-            <footer>
-                <p>© 2026 Vizsgaremek - Minden jog fenntartva</p>
-            </footer>
         </div>
+        </Layout>
     );
 };
 
