@@ -86,7 +86,7 @@ const ErtekelesPage = () => {
     if (error) return <div className="container mt-5 text-danger">{error}</div>;
 
     return (
-        <div className="container mt-4">
+        <div className="container mt-4 rating" >
             <h1>Tanár értékelése</h1>
             <form onSubmit={handleSubmit}>
                 {adatok.kerdesek.map((kerdes) => (
