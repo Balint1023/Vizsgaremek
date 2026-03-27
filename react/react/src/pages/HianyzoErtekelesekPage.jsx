@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Layout from "../components/Layout";
+import "../components/Layout.css";
+import "./HianyzoErtekelesek.css"
 
 const HianyzoErtekelesek = () => {
   const navigate = useNavigate();
@@ -60,7 +63,8 @@ const HianyzoErtekelesek = () => {
   if (error) return <div className="container mt-5 text-danger">{error}</div>;
 
   return (
-    <div className="container mt-4">
+    <Layout>
+      <div className="main mt-4">
       <h1>Értékelendő tanárok</h1>
 
       {tanarok.length === 0 ? (
@@ -68,7 +72,7 @@ const HianyzoErtekelesek = () => {
       ) : (
         <div className="card p-4 shadow-sm">
           <div className="mb-3">
-            <label htmlFor="tanarSelect" className="form-label">Válassz egy tanárt az értékeléshez:</label>
+            <label htmlFor="tanarSelect" className="form-label">Válassz egy tanárt az értékeléshez:</label><br />
             <select
               id="tanarSelect"
               className="form-select"
@@ -85,7 +89,7 @@ const HianyzoErtekelesek = () => {
           </div>
 
           <button
-            className="btn btn-primary w-100"
+            className="hianyzoErtekelesekbtn btn-primary w-100"
             onClick={handleStartErtekeles}
             disabled={!selectedTanarId}
           >
@@ -94,6 +98,7 @@ const HianyzoErtekelesek = () => {
         </div>
       )}
     </div>
+    </Layout>
   );
 };
 
