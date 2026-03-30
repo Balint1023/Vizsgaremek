@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import * as Icon from 'react-bootstrap-icons';
 
 const LogoutButton = () => {
     const navigate = useNavigate();
@@ -25,13 +26,14 @@ const LogoutButton = () => {
     };
 
     return (
+        <>
+        <Icon.BoxArrowRight color="white" style={{ marginRight: '8px', fontSize: 30}}/>
         <button
             onClick={handleLogout}
             className="btn btn-danger"
             style={{ cursor: 'pointer' }}
-        >
-            Kijelentkezés
-        </button>
+        >Kijelentkezés</button>
+        </>
     );
 };
 

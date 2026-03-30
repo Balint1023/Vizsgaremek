@@ -1,0 +1,86 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.admin-layout {
+    display: flex;
+    gap: 80px;
+}
+
+.admin-sidebar {
+    padding-left: 15px;
+    width: 20%;
+    background: linear-gradient(180deg,
+            #0d1a3a 0%,
+            #1c2b5a 35%,
+            #2e3f82 65%,
+            #4b63b8 100%);
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.admin-sidebar h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+nav {
+    overflow: hidden;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-bottom: 30px;
+    font-size: 25px;
+    display: flex;
+    padding: 7px;
+}
+
+nav a:hover {
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+    transform: scale(1.01);
+    background-color: #2e3f82;
+}
+
+nav a.active {
+    background: #4b63b8;
+    box-shadow: inset 3px 0 0 lightblue;
+}
+
+.admin-sidebar nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-content {
+    width: 80%;
+}
+
+.buttonArticle {
+    display: flex;
+    padding-left: 20px;
+}
+
+article button {
+    width: auto;
+    display: flex;
+    justify-self: left;
+    margin-bottom: 20px;
+    font-size: 25px;
+    color: white;
+    background-color: #0d1a3a;
+    background: transparent;
+    border: none;
+    padding: 0px;
+}
+
+.buttonArticle:hover {
+    transform: scale(1.01);
+    transition: all 0.3s ease-in-out;
+}
