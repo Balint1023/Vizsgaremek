@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './AdminQuestions.css';
 
 const AdminQuestions = () => {
     const [kerdesek, setKerdesek] = useState([]);
