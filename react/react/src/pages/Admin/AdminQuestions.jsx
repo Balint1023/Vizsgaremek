@@ -97,13 +97,13 @@ const AdminQuestions = () => {
 
     return (
         <div className="admin-page">
-            <h3>Kérdések Karbantartása</h3>
+            <h3>Új Kérdés</h3>
 
             {/* CRUD FORM */}
             <div className="admin-card">
                 <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
+                    <textarea
+                        className="kerdes-textarea"
                         placeholder="Kérdés szövege..."
                         value={formData.leiras}
                         onChange={(e) => setFormData({ ...formData, leiras: e.target.value })}
@@ -119,7 +119,7 @@ const AdminQuestions = () => {
                         ))}
                     </select>
 
-                    <button type="submit">
+                    <button type="submit" className='submitNewQuestion'>
                         {isEditing ? "Módosítás mentése" : "Kérdés hozzáadása"}
                     </button>
                     {isEditing && <button type="button" onClick={resetForm}>Mégse</button>}
@@ -139,7 +139,7 @@ const AdminQuestions = () => {
                 <tbody>
                     {kerdesek.map(k => (
                         <tr key={k.id}>
-                            <td>{k.id}</td>
+                            <td>{k.id}.</td>
                             <td>{k.leiras}</td>
                             <td>{k.tipus?.megnevezes}</td>
                             <td>
