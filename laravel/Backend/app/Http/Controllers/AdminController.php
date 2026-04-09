@@ -7,15 +7,23 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
     public function login(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'username' => 'required|string',
             'password' => 'required|string',
         ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validációs hiba történt',
+                'errors' => $validator->errors()
+            ], 422);
+        }
 
         $admin = Admin::where('username', $request->username)->first();
 
@@ -42,6 +50,14 @@ class AdminController extends Controller
 
     public function tanarStat($tanarId)
     {
+        $tanarNev = DB::table('tanar')->where('id', $tanarId)->value('nev');
+
+        if (!$tanarNev) {
+            return response()->json([
+                'message' => 'A megadott azonosítóval nem található tanár!'
+            ], 404);
+        }
+
         $statisztika = DB::table('valaszok')
             ->join('kerdesek', 'valaszok.kerdes_id', '=', 'kerdesek.id')
             ->where('valaszok.tanar_id', $tanarId)
@@ -55,9 +71,9 @@ class AdminController extends Controller
             ->get();
 
         return response()->json([
-            'tanar' => DB::table('tanar')->where('id', $tanarId)->value('nev'),
+            'tanar' => $tanarNev,
             'statisztika' => $statisztika
-        ]);
+        ], 200);
     }
 
     public function kerdoivStatuszModositas(Request $request)

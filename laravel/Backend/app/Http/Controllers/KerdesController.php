@@ -58,14 +58,25 @@ class KerdesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $kerdes = Kerdes::findOrFail($id);
+        $kerdes = Kerdes::find($id);
+
+        if (!$kerdes) {
+            return response()->json([
+                'message' => 'Nincsen ilyen kérdés id!'
+            ], 404);
+        }
+
         $validated = $request->validate([
             'leiras' => 'required|string|max:255',
             'tipus_id' => 'required|exists:kerdes_tipusok,id'
         ]);
 
         $kerdes->update($validated);
-        return response()->json($kerdes);
+
+        return response()->json([
+            'message' => 'Kérdés sikeresen frissítve!',
+            'data' => $kerdes
+        ], 200);
     }
 
     /**
@@ -73,7 +84,16 @@ class KerdesController extends Controller
      */
     public function destroy($id)
     {
-        Kerdes::destroy($id);
-        return response()->json(['message' => 'Kérdés törölve']);
+        $toroltDb = Kerdes::destroy($id);
+
+        if ($toroltDb === 0) {
+            return response()->json([
+                'message' => 'A törölni kívánt kérdés nem található.'
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'Kérdés sikeresen törölve!'
+        ], 200);
     }
 }

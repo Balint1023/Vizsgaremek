@@ -29,7 +29,7 @@ class DiakController extends Controller
         if (!$diak) {
             return response()->json([
                 'message' => 'Hibás OM azonosító!'
-            ], 404);
+            ], 401);
         }
 
         $diak->tokens()->delete();
@@ -58,17 +58,14 @@ class DiakController extends Controller
     {
         $diakId = $request->user()->id;
 
-        // A diák csoportjai
         $csoportIds = DB::table('diak_csoport')
             ->where('diak_id', $diakId)
             ->pluck('csoport_id');
 
-        // Már értékelt tanárok
         $ertekeltTanarIds = DB::table('ertekeles')
             ->where('diak_id', $diakId)
             ->pluck('tanar_id');
 
-        // Tanárok, akiket MÉG NEM értékelt
         $tanarok = DB::table('tanar')
             ->join('tanar_csoport', 'tanar.id', '=', 'tanar_csoport.tanar_id')
             ->whereIn('tanar_csoport.csoport_id', $csoportIds)
@@ -83,7 +80,6 @@ class DiakController extends Controller
 
     public function ertekelesKerdesek(Request $request, $tanarId)
     {
-        // Jogosultság ellenőrzése: csak az léphet be, akinek diák tokenje van
         if (!$request->user()->tokenCan('role-diak')) {
             return response()->json(['message' => 'Nincs jogosultságod értékelni'], 403);
         }
@@ -109,7 +105,6 @@ class DiakController extends Controller
     {
         $diakId = $request->user()->id;
 
-        // 1. Dupla mentés elleni védelem: ellenőrizzük, létezik-e már értékelés
         $marErtekelte = Ertekeles::where('diak_id', $diakId)
             ->where('tanar_id', $tanarId)
             ->exists();
@@ -118,7 +113,6 @@ class DiakController extends Controller
             return response()->json(['message' => 'Ezt a tanárt már értékelted!'], 422);
         }
 
-        // 2. Validáció - most már a 'kerdesek' táblára hivatkozva
         $request->validate([
             'valaszok' => 'required|array',
             'valaszok.*.kerdes_id' => 'required|integer|exists:kerdesek,id',
@@ -126,10 +120,8 @@ class DiakController extends Controller
         ]);
 
         try {
-            // Tranzakció indítása, hogy ha egy válasz mentése hibás, ne maradjon félbehagyott értékelés
             $eredmeny = DB::transaction(function () use ($request, $diakId, $tanarId) {
 
-                // 3. Fő értékelés rekord létrehozása
                 $ertekeles = Ertekeles::create([
                     'diak_id'  => $diakId,
                     'tanar_id' => $tanarId,
@@ -139,16 +131,14 @@ class DiakController extends Controller
                 $osszesPont = 0;
                 $valodiValaszokSzama = 0;
 
-                // 4. Válaszok mentése
                 foreach ($request->valaszok as $valasz) {
                     Valasz::create([
-                        'ertekeles_id' => $ertekeles->id, // Összekötjük a fő rekorddal
+                        'ertekeles_id' => $ertekeles->id,
                         'kerdes_id'    => $valasz['kerdes_id'],
                         'tanar_id'     => $tanarId,
                         'ertek'        => $valasz['pont'],
                     ]);
 
-                    // Statisztika számítása (kihagyva a "Nincs információm" / 0 pontot)
                     if ($valasz['pont'] > 0) {
                         $osszesPont += $valasz['pont'];
                         $valodiValaszokSzama++;
@@ -161,11 +151,7 @@ class DiakController extends Controller
                 ];
             });
 
-            return response()->json([
-                'message' => 'Sikeres mentés!',
-                'atlag' => $eredmeny['atlag'],
-                'valaszolt_kerdesek' => $eredmeny['db']
-            ], 201);
+            return response()->json(['message' => 'Sikeres mentés!'], 201);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Hiba történt a mentés során: ' . $e->getMessage()
