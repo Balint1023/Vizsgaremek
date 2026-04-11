@@ -1,0 +1,130 @@
+.admin-stats-container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 30px 0;
+}
+
+.selector-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e5e4e4;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 30px;
+    gap: 15px;
+}
+
+.selector-container label {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+.selector-container select {
+    font-size: 15px;
+    width: 60%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.selector-container select:hover {
+    border-color: #4a90e2;
+    background-color: #f9f9f9;
+}
+
+.selector-container select:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
+}
+
+.stats-results {
+    background-color: #e5e4e4;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+.stats-results h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #4a90e2;
+}
+
+.stats-results table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.stats-results table thead {
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+}
+
+.stats-results table th {
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.stats-results table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+    color: #555;
+    font-size: 14px;
+}
+
+.stats-results table tbody tr {
+    transition: all 0.2s ease-in-out;
+}
+
+.stats-results table tbody tr:hover {
+    background-color: #f0f5ff;
+    box-shadow: inset 0 0 5px rgba(74, 144, 226, 0.1);
+}
+
+.stats-results table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+@media (max-width: 768px) {
+    .admin-stats-container {
+        width: 95%;
+        padding: 15px 0;
+    }
+
+    .selector-container {
+        padding: 20px;
+    }
+
+    .selector-container select {
+        width: 100%;
+    }
+
+    .stats-results {
+        padding: 20px;
+    }
+
+    .stats-results h2 {
+        font-size: 20px;
+    }
+
+    .stats-results table th,
+    .stats-results table td {
+        padding: 10px;
+        font-size: 13px;
+    }
+}

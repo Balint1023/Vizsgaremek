@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./AdminStats.css";
 
 const AdminStats = () => {
     const [tanarok, setTanarok] = useState([]);
