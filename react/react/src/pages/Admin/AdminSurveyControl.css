@@ -1,0 +1,146 @@
+.survey-control-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #e5e4e4;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.survey-control-card h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #4a90e2;
+    width: 100%;
+    text-align: center;
+}
+
+.status-display {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.status-display p {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.btn-start,
+.btn-stop {
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-start {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-start:hover:not(:disabled) {
+    background-color: #218838;
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.btn-start:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.btn-stop {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-stop:hover:not(:disabled) {
+    background-color: #c82333;
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.btn-stop:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.feedback-message {
+    padding: 15px 20px;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 6px;
+    color: #155724;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    animation: slideIn 0.3s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .survey-control-card {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .survey-control-card h2 {
+        font-size: 20px;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-start,
+    .btn-stop {
+        width: 100%;
+        padding: 12px 20px;
+    }
+
+    .status-display {
+        padding: 15px;
+    }
+
+    .status-display p {
+        font-size: 16px;
+    }
+}

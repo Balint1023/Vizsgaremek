@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "./AdminSurveyControl.css";
 
 const AdminSurveyControl = () => {
     const [isActive, setIsActive] = useState(false);
