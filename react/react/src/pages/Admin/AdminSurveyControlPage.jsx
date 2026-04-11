@@ -1,4 +1,5 @@
 import AdminSurveyControl from "./AdminSurveyControl";
+import "./AdminSurveyControlPage.css";
 
 const AdminSurveyControlPage = () => {
     return (
