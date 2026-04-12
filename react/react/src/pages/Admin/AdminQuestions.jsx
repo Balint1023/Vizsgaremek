@@ -119,10 +119,12 @@ const AdminQuestions = () => {
                         ))}
                     </select>
 
-                    <button type="submit" className='submitNewQuestion'>
-                        {isEditing ? "Módosítás mentése" : "Kérdés hozzáadása"}
-                    </button>
-                    {isEditing && <button type="button" onClick={resetForm}>Mégse</button>}
+                    <div className='putButtons'>
+                        <button type="submit" className='submitNewQuestion'>
+                            {isEditing ? "Módosítás mentése" : "Kérdés hozzáadása"}
+                        </button>
+                        {isEditing && <button type="button" onClick={resetForm} className='cancelPutBtn'>Mégse</button>}
+                    </div>
                 </form>
             </div>
 
@@ -142,9 +144,9 @@ const AdminQuestions = () => {
                             <td>{k.id}.</td>
                             <td>{k.leiras}</td>
                             <td>{k.tipus?.megnevezes}</td>
-                            <td>
-                                <button onClick={() => startEdit(k)}>Szerkesztés</button>
-                                <button onClick={() => handleDelete(k.id)}>Törlés</button>
+                            <td className='tdButtons'>
+                                <button onClick={() => startEdit(k)} className='modificateBtn'>Szerkesztés</button>
+                                <button onClick={() => handleDelete(k.id)} className='cancelBtn'>Törlés</button>
                             </td>
                         </tr>
                     ))}

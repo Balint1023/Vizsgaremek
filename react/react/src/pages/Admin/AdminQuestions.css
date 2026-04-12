@@ -38,12 +38,26 @@ select {
 
 .submitNewQuestion {
     display: flex;
-    margin: auto;
     justify-content: center;
     height: 40px;
-    width: 30%;
+    width: 18%;
     padding: 12px;
-    background-color: #4a90e2;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.cancelPutBtn {
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    width: 18%;
+    padding: 12px;
+    background-color: rgb(240, 73, 73);
     color: white;
     border: none;
     border-radius: 8px;
@@ -53,8 +67,19 @@ select {
 }
 
 .submitNewQuestion:hover:not(:disabled) {
-    background-color: #357abd;
+    background-color: #119630;
     transform: scale(1.02);
+}
+
+.cancelPutBtn:hover:not(:disabled) {
+    background-color: rgb(212, 36, 36);
+    transform: scale(1.02);
+}
+
+.putButtons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
 }
 
 .button-primary {
@@ -87,6 +112,35 @@ select {
 
 .table th {
     background-color: #f2f2f2;
+}
+
+.modificateBtn {
+    background-color: rgb(190, 136, 35);
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.cancelBtn {
+    background-color: rgb(212, 36, 36);
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.tdButtons {
+    display: flex;
+    text-align: center;
+    gap: 10px;
+}
+
+tbody td {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 @media (max-width: 768px) {
