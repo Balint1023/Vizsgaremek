@@ -11,7 +11,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 17%;
+    width: 260px;
     height: 100vh;
     padding-left: 15px;
     background: linear-gradient(180deg, #0d1a3a 0%, #1c2b5a 35%, #2e3f82 65%, #4b63b8 100%);
@@ -59,8 +59,8 @@ nav a.active {
 }
 
 .admin-content {
-    width: 80%;
-    margin-left: 20%;
+    margin-left: 260px;
+    width: calc(100% - 260px);
 }
 
 .buttonArticle {
@@ -84,4 +84,40 @@ article button {
 .buttonArticle:hover {
     transform: scale(1.01);
     transition: all 0.3s ease-in-out;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    .admin-sidebar {
+        left: -300px; /* elrejtjük */
+        transition: 0.3s;
+    }
+
+    .admin-sidebar.open {
+        left: 0; /* előjön */
+    }
+
+    .admin-content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .menu-toggle {
+        display: block;
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        z-index: 200;
+        font-size: 24px;
+        background: #0d1a3a;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+    }
+
 }

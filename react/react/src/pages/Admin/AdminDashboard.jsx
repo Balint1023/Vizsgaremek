@@ -1,12 +1,14 @@
 import { Outlet, NavLink } from "react-router-dom";
 import LogoutButton from "../../components/LogoutButton";
+import { useState } from "react";
 import * as Icon from 'react-bootstrap-icons';
 import "./AdminDashboard.css"
 
 const AdminDashboard = () => {
+    const [isOpen, setIsOpen] = useState(false);
     return (
         <div className="admin-layout">
-            <aside className="admin-sidebar">
+            <aside className={`admin-sidebar ${isOpen ? "open" : ""}`}>
                 <article>
                     <h1><Icon.Person color="white" style={{ marginRight: '8px' }} />Admin</h1>
                     <nav>
@@ -22,6 +24,9 @@ const AdminDashboard = () => {
 
             {/* JOBB OLDAL - DINAMIKUS TARTALOM */}
             <main className="admin-content">
+                <button className="menu-toggle" onClick={() => setIsOpen(!isOpen)}>
+                    ☰
+                </button>
                 <header>
                     <h1>Minőségbiztosítási kérdőív</h1>
                 </header>

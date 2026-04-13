@@ -93,7 +93,7 @@ const AdminQuestions = () => {
         setFormData({ id: null, leiras: '', tipus_id: tipusok[0]?.id || '' });
     };
 
-    if (loading) return <div>Betöltés folyamatban...</div>;
+    if (loading) return <div className='loading'>Betöltés folyamatban...</div>;
 
     return (
         <div className="admin-page">

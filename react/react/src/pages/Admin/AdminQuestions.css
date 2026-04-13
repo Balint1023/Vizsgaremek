@@ -143,6 +143,10 @@ tbody td {
     padding-bottom: 10px;
 }
 
+.loading{
+    text-align: center;
+}
+
 @media (max-width: 768px) {
     .admin-page {
         flex-direction: column;
@@ -151,5 +155,10 @@ tbody td {
     .sidebar {
         width: 100%;
         height: auto;
+    }
+
+    .submitNewQuestion {
+        padding: 5px;
+        width: 100px;
     }
 }
