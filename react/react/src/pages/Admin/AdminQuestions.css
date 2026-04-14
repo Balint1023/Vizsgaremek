@@ -7,6 +7,10 @@
 
 }
 
+.admin-page h3 {
+    text-align: center;
+}
+
 .admin-card {
     display: flex;
     flex-direction: column;
@@ -40,8 +44,8 @@ select {
     display: flex;
     justify-content: center;
     height: 40px;
-    width: 18%;
-    padding: 12px;
+    width: 60%;
+    padding: 10px 0px 5px 0px;
     background-color: #28a745;
     color: white;
     border: none;
@@ -169,6 +173,7 @@ tbody td {
     .cancelPutBtn {
         width: 90%;
         margin: 5px auto;
+        padding: 10px 0px 5px;
     }
 
     .putButtons {
