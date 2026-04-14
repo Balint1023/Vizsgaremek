@@ -121,7 +121,7 @@ const AdminQuestions = () => {
 
                     <div className='putButtons'>
                         <button type="submit" className='submitNewQuestion'>
-                            {isEditing ? "Módosítás mentése" : "Kérdés hozzáadása"}
+                            {isEditing ? "Mentés" : "Kérdés hozzáadása"}
                         </button>
                         {isEditing && <button type="button" onClick={resetForm} className='cancelPutBtn'>Mégse</button>}
                     </div>

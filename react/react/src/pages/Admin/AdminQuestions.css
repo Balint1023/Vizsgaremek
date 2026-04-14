@@ -48,8 +48,8 @@ select {
     display: flex;
     justify-content: center;
     height: 40px;
-    width: 60%;
-    padding: 10px 0px 5px 0px;
+    width: 18%;
+    padding: 12px;
     background-color: #28a745;
     color: white;
     border: none;
@@ -152,6 +152,8 @@ tbody td {
 }
 
 .loading{
+    display: flex;
+    flex-direction: column;
     text-align: center;
 }
 
