@@ -11,6 +11,10 @@
 
 }
 
+.admin-page h3 {
+    text-align: center;
+}
+
 .admin-card {
     display: flex;
     flex-direction: column;
