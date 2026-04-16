@@ -2,6 +2,8 @@ import { useState } from 'react';
 import "./AdminLoginForm.css";
 import "../Layout.css"
 import Layout from '../Layout';
+import Loading from '../Loading';
+import '../Loading.css';
 
 const AdminLoginForm = ({ onLoginSuccess }) => {
     const [credentials, setCredentials] = useState({ username: '', password: '' });
@@ -42,40 +44,40 @@ const AdminLoginForm = ({ onLoginSuccess }) => {
     return (
         <Layout>
             <div className="admin-login-wrapper">
-            <div className="admin-login-form-container">
-                <h1>Admin Bejelentkezés</h1>
+                <div className="admin-login-form-container">
+                    <h1>Admin Bejelentkezés</h1>
 
-                <div className="login-content">
-                    <form onSubmit={handleSubmit} className="admin-login-form">
-                        {error && <p style={{ color: 'red', fontSize: '12px' }}>{error}</p>}
+                    <div className="login-content">
+                        <form onSubmit={handleSubmit} className="admin-login-form">
+                            {error && <p style={{ color: 'red', fontSize: '12px' }}>{error}</p>}
 
-                        <div className="input-group">
-                            <label>Felhasználónév</label>
-                            <input
-                                name="username"
-                                type="text"
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
+                            <div className="input-group">
+                                <label>Felhasználónév</label>
+                                <input
+                                    name="username"
+                                    type="text"
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
 
-                        <div className="input-group">
-                            <label>Jelszó</label>
-                            <input
-                                name="password"
-                                type="password"
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
+                            <div className="input-group">
+                                <label>Jelszó</label>
+                                <input
+                                    name="password"
+                                    type="password"
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
 
-                        <button type="submit">Bejelentkezés</button>
-                    </form>
+                            <button type="submit">Bejelentkezés</button>
+                        </form>
 
-                    <img src="/mathiasz_logo.png" alt="logo" className="login-logo" />
+                        <img src="/mathiasz_logo.png" alt="logo" className="login-logo" />
+                    </div>
                 </div>
             </div>
-        </div>
         </Layout>
     );
 };

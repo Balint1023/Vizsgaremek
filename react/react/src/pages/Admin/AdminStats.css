@@ -10,10 +10,10 @@
     align-items: center;
     background-color: #e5e4e4;
     border: 1px solid #ddd;
-    border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     padding: 30px;
     margin-bottom: 30px;
+    margin-top: 30px;
     gap: 15px;
 }
 
@@ -47,7 +47,6 @@
 .stats-results {
     background-color: #e5e4e4;
     border: 1px solid #ddd;
-    border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     padding: 30px;
 }
@@ -98,6 +97,14 @@
 
 .stats-results table tbody tr:last-child td {
     border-bottom: none;
+}
+
+#valaszok {
+    text-align: center;
+}
+
+#atlag {
+    text-align: center;
 }
 
 @media (max-width: 768px) {

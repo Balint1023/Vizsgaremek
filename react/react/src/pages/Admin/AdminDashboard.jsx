@@ -18,8 +18,8 @@ const AdminDashboard = () => {
                 <article>
                     <h1><Icon.Person color="white" style={{ marginRight: '8px' }} />Admin</h1>
                     <nav>
-                        <NavLink 
-                            to="/admin/dashboard/kerdoivek" 
+                        <NavLink
+                            to="/admin/dashboard/kerdoivek"
                             className={({ isActive }) => "menu-item" + (isActive ? " active" : "")}
                         >
                             <Icon.House color="white" style={{ marginRight: '8px' }} />
@@ -44,14 +44,14 @@ const AdminDashboard = () => {
             </aside>
 
             {/* JOBB OLDAL - DINAMIKUS TARTALOM */}
-            <main className="admin-content">
+            <aside className="admin-content">
                 <button className="menu-toggle" onClick={() => setIsOpen(!isOpen)}>
                     ☰
                 </button>
                 <div className="content-inner">
                     <Outlet />
                 </div>
-            </main>
+            </aside>
         </div>
     );
 };

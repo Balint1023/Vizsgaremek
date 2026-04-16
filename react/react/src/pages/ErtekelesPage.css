@@ -1,11 +1,11 @@
 .rating.container {
-    background-color: white;
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+  background-color: white;
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
 .rating {
   * {
@@ -114,7 +114,6 @@
     color: #d32f2f;
   }
 
-  /* Responsive */
   @media (max-width: 600px) {
     .container {
       margin: 20px 10px;

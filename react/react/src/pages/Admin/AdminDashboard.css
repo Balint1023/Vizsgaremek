@@ -93,12 +93,14 @@ article button {
 @media (max-width: 768px) {
 
     .admin-sidebar {
-        left: -300px; /* elrejtjük */
+        left: -300px;
+        /* elrejtjük */
         transition: 0.3s;
     }
 
     .admin-sidebar.open {
-        left: 0; /* előjön */
+        left: 0;
+        /* előjön */
     }
 
     .admin-content {

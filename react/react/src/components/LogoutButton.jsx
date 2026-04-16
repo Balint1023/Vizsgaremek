@@ -27,12 +27,11 @@ const LogoutButton = () => {
 
     return (
         <>
-        <Icon.BoxArrowRight color="white" style={{ marginRight: '8px', fontSize: 30}}/>
-        <button
-            onClick={handleLogout}
-            className="btn btn-danger"
-            style={{ cursor: 'pointer' }}
-        >Kijelentkezés</button>
+            <button
+                onClick={handleLogout}
+                className="btn btn-danger"
+                style={{ cursor: 'pointer' }}
+            >        <Icon.BoxArrowRight color="white" style={{ marginRight: '8px', fontSize: 30 }} />Kijelentkezés</button>
         </>
     );
 };

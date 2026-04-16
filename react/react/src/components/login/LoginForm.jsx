@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import "../LoginForm.css";
 import Layout from '../Layout';
+import Loading from '../Loading';
+import '../Loading.css';
 
 const LoginForm = ({ onLoginSuccess }) => {
     const [diakId, setDiakId] = useState('');
@@ -74,63 +76,77 @@ const LoginForm = ({ onLoginSuccess }) => {
         }
     };
 
-    if (loading) return <Layout><p>Betöltés...</p></Layout>;
-
     return (
-        <Layout>
-            {/* Itt a kulcs: dinamikusan kapja meg a fade-out osztályt */}
-            {error && (
-                <div className={`error-popup ${isFadingOut ? 'fade-out' : ''}`}>
-                    <div className="error-popup-content">
-                        <span>{error}</span>
-                    </div>
+        <div>
+            {loading ? (
+                <div style={{
+                    position: 'fixed',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    zIndex: 9999,
+                    pointerEvents: 'none'
+                }}>
+                    <Loading />
                 </div>
-            )}
-
-            <div className="login-header">
-                <h1>Minőségirányítás</h1>
-                <h3>Tanulói kérdőív</h3>
-            </div>
-
-            <p className="description-text">
-                Oktatási azonosítódat a diákigazolványodon találod.
-                Ha szükséges, kérj segítséget osztályfőnöködtől!
-            </p>
-
-            <div className="login-body-flex">
-                <form className="form-section" onSubmit={handleSubmit}>
-                    <label>OM azonosító</label>
-
-                    {!isAktiv && (
-                        <div className="status-closed-msg">
-                            A kérdőív jelenleg nem elérhető!
+            ) : (
+                <Layout>
+                    {/* Itt a kulcs: dinamikusan kapja meg a fade-out osztályt */}
+                    {error && (
+                        <div className={`error-popup ${isFadingOut ? 'fade-out' : ''}`}>
+                            <div className="error-popup-content">
+                                <span>{error}</span>
+                            </div>
                         </div>
                     )}
 
-                    <input
-                        type="number"
-                        value={diakId}
-                        onChange={(e) => setDiakId(e.target.value)}
-                        required
-                        disabled={!isAktiv}
-                        className={error ? 'input-error' : ''}
-                        placeholder="Adja meg az azonosítót"
-                    />
+                    <div className="login-header">
+                        <h1>Minőségirányítás</h1>
+                        <h3>Tanulói kérdőív</h3>
+                    </div>
 
-                    <button
-                        type="submit"
-                        className="login-btn"
-                        disabled={!isAktiv}
-                    >
-                        {isAktiv ? 'Bejelentkezés' : 'Nem elérhető'}
-                    </button>
-                </form>
+                    <p className="description-text">
+                        Oktatási azonosítódat a diákigazolványodon találod.
+                        Ha szükséges, kérj segítséget osztályfőnöködtől!
+                    </p>
 
-                <div className="image-section">
-                    <img src="diak.jpg" alt="Segédlet" />
-                </div>
-            </div>
-        </Layout>
+                    <div className="login-body-flex">
+                        <form className="form-section" onSubmit={handleSubmit}>
+                            <label>OM azonosító</label>
+
+                            {!isAktiv && (
+                                <div className="status-closed-msg">
+                                    A kérdőív jelenleg nem elérhető!
+                                </div>
+                            )}
+
+                            <input
+                                type="number"
+                                value={diakId}
+                                onChange={(e) => setDiakId(e.target.value)}
+                                required
+                                disabled={!isAktiv}
+                                className={error ? 'input-error' : ''}
+                                placeholder="Adja meg az azonosítót"
+                            />
+
+                            <button
+                                type="submit"
+                                className="login-btn"
+                                disabled={!isAktiv}
+                            >
+                                {isAktiv ? 'Bejelentkezés' : 'Nem elérhető'}
+                            </button>
+                        </form>
+
+                        <div className="image-section">
+                            <img src="diak.jpg" alt="Segédlet" />
+                        </div>
+                    </div>
+                </Layout>
+            )}
+        </div>
+
     );
 };
 

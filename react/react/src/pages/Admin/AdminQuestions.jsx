@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './AdminQuestions.css';
+import Loading from "../../components/Loading";
 
 const AdminQuestions = () => {
     const [kerdesek, setKerdesek] = useState([]);
@@ -12,6 +13,14 @@ const AdminQuestions = () => {
 
     const token = localStorage.getItem('token');
     const API_BASE = 'http://localhost:8000/api';
+
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         loadInitialData();
@@ -93,65 +102,80 @@ const AdminQuestions = () => {
         setFormData({ id: null, leiras: '', tipus_id: tipusok[0]?.id || '' });
     };
 
-    if (loading) return <div className='loading'>Betöltés folyamatban...</div>;
-
     return (
         <div className="admin-page">
-            <h3>Új Kérdés</h3>
+            {loading ? (
+                <div style={{
+                    position: 'fixed',
+                    top: '50%',
+                    /* HA MOBIL: 50%, HA ASZTALI: eltolva a sidebarral */
+                    left: isMobile ? '50%' : 'calc(50% + 125px)',
+                    transform: 'translate(-50%, -50%)',
+                    zIndex: 9999,
+                    pointerEvents: 'none'
+                }}>
+                    <Loading />
+                </div>
+            ) : (
+                <>
+                    <h3>Új Kérdés</h3>
 
-            {/* CRUD FORM */}
-            <div className="admin-card">
-                <form onSubmit={handleSubmit}>
-                    <textarea
-                        className="kerdes-textarea"
-                        placeholder="Kérdés szövege..."
-                        value={formData.leiras}
-                        onChange={(e) => setFormData({ ...formData, leiras: e.target.value })}
-                        required
-                    />
+                    <div className="admin-card">
+                        <form onSubmit={handleSubmit}>
+                            <textarea
+                                className="kerdes-textarea"
+                                placeholder="Kérdés szövege..."
+                                value={formData.leiras}
+                                onChange={(e) => setFormData({ ...formData, leiras: e.target.value })}
+                                required
+                            />
 
-                    <select
-                        value={formData.tipus_id}
-                        onChange={(e) => setFormData({ ...formData, tipus_id: e.target.value })}
-                    >
-                        {tipusok.map(t => (
-                            <option key={t.id} value={t.id}>{t.megnevezes}</option>
-                        ))}
-                    </select>
+                            <select
+                                value={formData.tipus_id}
+                                onChange={(e) => setFormData({ ...formData, tipus_id: e.target.value })}
+                            >
+                                {tipusok.map(t => (
+                                    <option key={t.id} value={t.id}>{t.megnevezes}</option>
+                                ))}
+                            </select>
 
-                    <div className='putButtons'>
-                        <button type="submit" className='submitNewQuestion'>
-                            {isEditing ? "Mentés" : "Hozzáadás"}
-                        </button>
-                        {isEditing && <button type="button" onClick={resetForm} className='cancelPutBtn'>Mégse</button>}
+                            <div className='putButtons'>
+                                <button type="submit" className='submitNewQuestion'>
+                                    {isEditing ? "Mentés" : "Hozzáadás"}
+                                </button>
+                                {isEditing && (
+                                    <button type="button" onClick={resetForm} className='cancelPutBtn'>
+                                        Mégse
+                                    </button>
+                                )}
+                            </div>
+                        </form>
                     </div>
-                </form>
-            </div>
-
-            {/* ADAT TÁBLÁZAT */}
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Kérdés</th>
-                        <th>Típus</th>
-                        <th>Műveletek</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {kerdesek.map(k => (
-                        <tr key={k.id}>
-                            <td>{k.id}.</td>
-                            <td>{k.leiras}</td>
-                            <td>{k.tipus?.megnevezes}</td>
-                            <td className='tdButtons'>
-                                <button onClick={() => startEdit(k)} className='modificateBtn'>Szerkesztés</button>
-                                <button onClick={() => handleDelete(k.id)} className='cancelBtn'>Törlés</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Kérdés</th>
+                                <th>Típus</th>
+                                <th>Műveletek</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {kerdesek.map(k => (
+                                <tr key={k.id}>
+                                    <td>{k.id}.</td>
+                                    <td>{k.leiras}</td>
+                                    <td>{k.tipus?.megnevezes}</td>
+                                    <td className='tdButtons'>
+                                        <button onClick={() => startEdit(k)} className='modificateBtn'>Szerkesztés</button>
+                                        <button onClick={() => handleDelete(k.id)} className='cancelBtn'>Törlés</button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </>
+            )}
         </div>
     );
 };

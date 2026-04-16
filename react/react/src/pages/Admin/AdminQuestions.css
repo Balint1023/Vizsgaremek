@@ -25,7 +25,7 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     padding-top: 30px;
     padding-bottom: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 textarea {
@@ -151,15 +151,11 @@ tbody td {
     padding-bottom: 10px;
 }
 
-.loading{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-
 @media (max-width: 768px) {
     .admin-page {
-        width: 100%;
+        display: flex;
+        margin: auto;
+        width: 90%;
         padding: 10px;
     }
 
@@ -199,9 +195,9 @@ tbody td {
     }
 
     .tdButtons {
+        display: flex;
         flex-direction: column;
         gap: 5px;
-        align-items: center;
     }
 
     .modificateBtn,
@@ -209,6 +205,7 @@ tbody td {
         width: 100%;
         padding: 8px;
     }
+
 }
 
 @media (max-width: 480px) {
@@ -242,10 +239,17 @@ tbody td {
         padding: 6px;
         font-size: 12px;
     }
+
     .submitNewQuestion,
     .cancelPutBtn {
         width: 95%;
         margin: 5px auto;
         padding: 10px 0px 5px;
+    }
+
+    .tdButtons {
+        flex-direction: column;
+        gap: 5px;
+        align-items: center;
     }
 }

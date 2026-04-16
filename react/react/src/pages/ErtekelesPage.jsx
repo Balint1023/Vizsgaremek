@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './ErtekelesPage.css';
+import Loading from '../components/Loading';
+import '../components/Loading.css';
 
 const ErtekelesPage = () => {
     const { tanarId } = useParams();
@@ -82,41 +84,55 @@ const ErtekelesPage = () => {
         }
     };
 
-    if (loading) return <div className="container mt-5">Betöltés...</div>;
     if (error) return <div className="container mt-5 text-danger">{error}</div>;
 
     return (
-        <div className="container mt-4 rating" >
-            <h1>Tanár értékelése</h1>
-            <form onSubmit={handleSubmit}>
-                {adatok.kerdesek.map((kerdes) => (
-                    <div key={kerdes.id} className="card mb-3 shadow-sm">
-                        <div className="card-body">
-                            <h5 className="card-title">{kerdes.leiras}</h5>
-                            <div className="d-flex flex-wrap gap-3">
-                                {adatok.valaszlehetosegek.map((v) => (
-                                    <div key={v.pont} className="form-check">
-                                        <input
-                                            className="form-check-input"
-                                            type="radio"
-                                            name={`kerdes-${kerdes.id}`}
-                                            id={`q-${kerdes.id}-p-${v.pont}`}
-                                            checked={valaszok[kerdes.id] === v.pont}
-                                            onChange={() => handleRadioChange(kerdes.id, v.pont)}
-                                        />
-                                        <label className="form-check-label" htmlFor={`q-${kerdes.id}-p-${v.pont}`}>
-                                            {v.szoveg}
-                                        </label>
+        <div>
+            {loading ? (
+                <div style={{
+                    position: 'fixed',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    zIndex: 9999,
+                    pointerEvents: 'none'
+                }}>
+                    <Loading />
+                </div>
+            ) : (
+                <div className="container mt-4 rating" >
+                    <h1>Tanár értékelése</h1>
+                    <form onSubmit={handleSubmit}>
+                        {adatok.kerdesek.map((kerdes) => (
+                            <div key={kerdes.id} className="card mb-3 shadow-sm">
+                                <div className="card-body">
+                                    <h5 className="card-title">{kerdes.leiras}</h5>
+                                    <div className="d-flex flex-wrap gap-3">
+                                        {adatok.valaszlehetosegek.map((v) => (
+                                            <div key={v.pont} className="form-check">
+                                                <input
+                                                    className="form-check-input"
+                                                    type="radio"
+                                                    name={`kerdes-${kerdes.id}`}
+                                                    id={`q-${kerdes.id}-p-${v.pont}`}
+                                                    checked={valaszok[kerdes.id] === v.pont}
+                                                    onChange={() => handleRadioChange(kerdes.id, v.pont)}
+                                                />
+                                                <label className="form-check-label" htmlFor={`q-${kerdes.id}-p-${v.pont}`}>
+                                                    {v.szoveg}
+                                                </label>
+                                            </div>
+                                        ))}
                                     </div>
-                                ))}
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                ))}
-                <button type="submit" className="btn btn-success btn-lg mb-5" disabled={saving}>
-                    {saving ? 'Mentés...' : 'Értékelés beküldése'}
-                </button>
-            </form>
+                        ))}
+                        <button type="submit" className="btn btn-success btn-lg mb-5" disabled={saving}>
+                            {saving ? 'Mentés...' : 'Értékelés beküldése'}
+                        </button>
+                    </form>
+                </div>
+            )}
         </div>
     );
 };
