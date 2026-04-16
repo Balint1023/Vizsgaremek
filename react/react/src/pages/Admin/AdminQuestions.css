@@ -242,4 +242,10 @@ tbody td {
         padding: 6px;
         font-size: 12px;
     }
+    .submitNewQuestion,
+    .cancelPutBtn {
+        width: 95%;
+        margin: 5px auto;
+        padding: 10px 0px 5px;
+    }
 }
