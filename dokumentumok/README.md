@@ -52,7 +52,7 @@ A Laravel projekt elindításához hajtsa végre az alábbi lépéseket a termin
 
 
 
-Visual Studio Code-ban nyissa meg a Frontend mappát (react mappán belül).
+Visual Studio Code-ban nyissa meg a react mappát (react mappán belül).
 
 
 
