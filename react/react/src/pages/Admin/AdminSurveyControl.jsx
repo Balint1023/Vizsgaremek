@@ -55,7 +55,7 @@ const AdminSurveyControl = () => {
                 setMessage('Hiba történt a mentés során.');
             }
         } catch (error) {
-            setMessage('Hálózati hiba történt.');
+            setMessage('Hálózati hiba történt.', error);
         }
 
         setTimeout(() => setMessage(''), 3000);

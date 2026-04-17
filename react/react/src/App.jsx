@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import LoginPage from './pages/LoginPage';
 import HianyzoErtekelesek from './pages/HianyzoErtekelesekPage';
 import ErtekelesPage from './pages/ErtekelesPage';
-import AdminLoginPage from './pages/admin/AdminLoginPage';
+import AdminLoginPage from './pages/Admin/AdminLoginPage';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 import AdminStats from './pages/Admin/AdminStats';
 import AdminQuestions from './pages/Admin/AdminQuestions';
